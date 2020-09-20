@@ -18,6 +18,14 @@ class JustController{
         
         echo $this->view->showPage('home');
     }
+
+    function Categoria(){
+        echo $this->view->showPage('categoria');
+    }
+
+    function Producto(){
+        echo $this->view->showPage('producto');
+    }
 }
 
 

@@ -31,12 +31,12 @@ class JustView {
                 </div>
                 <nav class="nav">
                     <ul class="nav-items nav-izquierdo">
-                        <li><a href="./html/categoria.html">Aromaterapia</a></li>
-                        <li><a href="./html/categoria.html">Rostro</a></li>
-                        <li><a href="./html/categoria.html">Manos</a></li>
-                        <li><a href="./html/categoria.html">Cuerpo</a></li>
-                        <li><a href="./html/categoria.html">Labios</a></li>
-                        <li><a href="./html/categoria.html">Piernas</a></li>
+                        <li><a href="categoria">Aromaterapia</a></li>
+                        <li><a href="categoria">Rostro</a></li>
+                        <li><a href="categoria">Manos</a></li>
+                        <li><a href="categoria">Cuerpo</a></li>
+                        <li><a href="categoria">Labios</a></li>
+                        <li><a href="categoria">Piernas</a></li>
                     </ul>
         
                     <ul class="nav-items nav-derecho">
@@ -155,27 +155,27 @@ class JustView {
             </aside>
         
             <article class="container-imagenes">
-                <a href="./html/categoria.html">
+                <a href="categoria">
                     <h3>Aromaterapia</h3>
                     <img src="images/img_index1.png" alt="Aromaterapia">
                 </a>
-                <a href="./html/categoria.html">
+                <a href="categoria">
                     <h3>Cuidado de labios</h3>
                     <img src="images/img_index5.png" alt="Cuidado de labios">
                 </a>
-                <a href="./html/categoria.html">
+                <a href="categoria">
                     <h3>Cuidado del cabello</h3>
                     <img src="images/img_index2.png" alt="Cuidado del cabello">
                 </a>
-                <a href="./html/categoria.html">
+                <a href="categoria">
                     <h3>Cuidado del cuerpo</h3>
                     <img src="images/img_index3.png" alt="Cuidado del cuerpo">
                 </a>
-                <a href="./html/categoria.html">
+                <a href="categoria">
                     <h3>Cuidado del rostro</h3>
                     <img src="images/img_index4.png" alt="Cuidado del rostro">
                 </a>
-                <a href="./html/categoria.html">
+                <a href="categoria">
                     <h3>Cuidado de piernas</h3>
                     <img src="images/img_index6.png" alt="Cuidado de piernas">
                 </a>
@@ -246,8 +246,8 @@ class JustView {
     function showProducto(){
         $html = '<!---------------------------------------------CONTENT--------------------------------->
         <ul class="breadcrumb">
-            <li><a href="html/home.html"><i class="fas fa-home"></i></a></li>
-            <li><a href="html/categoria.html">Aromaterapia</a></li>
+            <li><a href="home"><i class="fas fa-home"></i></a></li>
+            <li><a href="categoria">Aromaterapia</a></li>
             <li>Aceite de Geranio</li>
         </ul>
         
@@ -270,41 +270,41 @@ class JustView {
     function showCategoria(){
         $html= '<!---------------------------------------------CONTENT--------------------------------->
         <ul class="breadcrumb">
-            <li><a href="html/home.html"><i class="fas fa-home"></i></a></li>
+            <li><a href="home"><i class="fas fa-home"></i></a></li>
             <li>Aromaterapia</li>
         </ul>
         
         <article class="container-imagenes categoria">
             <h1 class="titulo-categoria">Aromaterapia</h1>
-            <a href="html/producto.html">
+            <a href="producto">
                 <h3>Aceite de Bergamota</h3>
                 <img src="images/categoria/Bergamota.png" alt="Bergamota">
             </a>
-            <a href="html/producto.html">
+            <a href="producto">
                 <h3>Aceite de Eucalipto</h3>
                 <img src="images/categoria/Eucalipto.png" alt="Eucalipto">
             </a>
-            <a href="html/producto.html">
+            <a href="producto">
                 <h3>Aceite de Geranio</h3>
                 <img src="images/categoria/Geranio.png" alt="Geranio">
             </a>
-            <a href="html/producto.html">
+            <a href="producto">
                 <h3>Aceite de Limon</h3>
                 <img src="images/categoria/Limon.png" alt="Limon">
             </a>
-            <a href="html/producto.html">
+            <a href="producto">
                 <h3>Aceite de Lavanda</h3>
                 <img src="images/categoria/Lavanda.png" alt="Lavanda">
             </a>
-            <a href="html/producto.html">
+            <a href="producto">
                 <h3>Aceite de Manzanilla</h3>
                 <img src="images/categoria/Manzanilla.png" alt="Manzanilla">
             </a>
-            <a href="html/producto.html">
+            <a href="producto">
                 <h3>Aceite de Menta</h3>
                 <img src="images/categoria/Menta.png" alt="Menta">
             </a>
-            <a href="html/producto.html">
+            <a href="producto">
                 <h3>Aceite de Naranja</h3>
                 <img src="images/categoria/Naranja.png" alt="Naranja">
             </a>

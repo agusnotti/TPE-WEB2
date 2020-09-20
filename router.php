@@ -9,7 +9,9 @@
     $r = new Router();
 
     // rutas
-    $r->addRoute("home", "GET", "JustController", "Home");
+$r->addRoute("home", "GET", "JustController", "Home");
+$r->addRoute("categoria", "GET", "JustController", "Categoria");
+$r->addRoute("producto", "GET", "JustController", "Producto");
 
     //Ruta por defecto.
     $r->setDefaultRoute("JustController", "Home");
