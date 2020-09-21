@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2020 a las 00:39:20
+-- Tiempo de generación: 22-09-2020 a las 00:46:56
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -24,17 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE `categoria` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `producto`
 --
 
@@ -48,37 +37,40 @@ CREATE TABLE `producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tablas volcadas
+-- Volcado de datos para la tabla `producto`
 --
 
+INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `tamano`, `precio`, `id_categoria`) VALUES
+(14, 'Aceite de Geranio', 'Aceite', 15, 500, 5),
+(15, 'Aceite de Lavanda', 'Aceite', 25, 700, 5),
+(19, 'Aceite de Manzanilla', 'Aceite', 50, 1300, 5),
+(20, 'Aceite de Menta', 'Aceite', 40, 1100, 5),
+(21, 'Aceite de Fruta', 'Aceite', 35, 900, 5),
+(22, 'Aceite de Manzana', 'Aceite', 25, 1500, 5),
+(23, 'Aceite de Limon', 'Aceite', 10, 1200, 5),
+(24, 'probando', 'asd', 1, 2, 5),
+(25, 'probandoagregaracuerpo', 'sasd', 25, 450, 8);
+
 --
--- Indices de la tabla `categoria`
+-- Índices para tablas volcadas
 --
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `FK_id_categoria` (`id_categoria`);
+  ADD KEY `FK_id_categoria` (`id_categoria`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restricciones para tablas volcadas
@@ -88,7 +80,7 @@ ALTER TABLE `producto`
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

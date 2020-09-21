@@ -31,7 +31,7 @@ class JustController{
 
 
     function InsertProducto(){
-        $categorias=$this->model->getIdCategoriaByNombre($_POST['Categoria']);
+        $categorias=$this->model->getIdCategoriaByNombre($_POST['eleccion']);
         $this->model->insertProducto($_POST['Nombre_Producto'],$_POST['Descripcion'],$_POST['Tamano'],$_POST['Precio'],$categorias[0]->id);
         $this->view->ShowHomeLocation('categoria');
     }

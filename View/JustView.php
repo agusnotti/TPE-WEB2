@@ -5,7 +5,7 @@ class JustView {
     private $title;
 
     function __construct(){
-        $this->title = "Titulo";
+        $this->title = "Just - Cosmetica Natural";
     }
 
     function showPage($partialPage,$productos=null){
@@ -16,10 +16,11 @@ class JustView {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Just - Cosmetica Natural</title>
+            <title>'.$this->title.'</title>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
             <link rel="stylesheet" href="css/main.css">
             <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+            
         </head>
         
         <body>
@@ -339,8 +340,16 @@ class JustView {
                     <input type="text" id="nombre-tabla" name="Nombre_Producto" placeholder="Nombre producto" required>
                     <input type="text" id="descripcion-tabla" name="Descripcion" placeholder="Descripcion" required>
                     <input type="text" id="tamaño-tabla" name="Tamano" placeholder="Tamaño" required>
-                    <input type="text" id="precio-tabla" name="Precio" placeholder="Precio" required>
-                    <input type="text" id="categoria-tabla" name="Categoria" placeholder="Categoria" required>
+                    <input type="text" id="precio-tabla" name="Precio" placeholder="Precio" required step="any">
+                    <label for="select-categoria">Seleccione una Categoría</label>
+                    <select name="eleccion" id="select-categoria">
+                       <option value="Aromaterapia">Aromaterapia</option> 
+                        <option value="Rostro">Rostro</option>
+                         <option value="Manos">Manos</option>
+                         <option value="Cuerpo">Cuerpo</option>                         
+                         <option value="Labios">Labios</option>
+                         <option value="Piernas">Piernas</option>
+                    </select>
                     <button id="btn-agregar-tabla" class="btn-form-productos">Agregar producto</button>
                 </form>
   
