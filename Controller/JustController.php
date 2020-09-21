@@ -16,15 +16,24 @@ class JustController{
 
     function Home(){
         
-        echo $this->view->showPage('home');
+        $this->view->showPage('home');
+
     }
 
     function Categoria(){
-        echo $this->view->showPage('categoria');
+         $productos=$this->model->getProductos();
+         $this->view->showPage('categoria',$productos);
     }
 
     function Producto(){
-        echo $this->view->showPage('producto');
+         $this->view->showPage('producto');
+    }
+
+
+    function InsertProducto(){
+        $categorias=$this->model->getIdCategoriaByNombre($_POST['Categoria']);
+        $this->model->insertProducto($_POST['Nombre_Producto'],$_POST['Descripcion'],$_POST['Tamano'],$_POST['Precio'],$categorias[0]->id);
+        $this->view->ShowHomeLocation('categoria');
     }
 }
 

@@ -8,7 +8,7 @@ class JustView {
         $this->title = "Titulo";
     }
 
-    function showPage($partialPage){
+    function showPage($partialPage,$productos=null){
 
         $html = '<!DOCTYPE html>
         <html lang="en">
@@ -54,7 +54,7 @@ class JustView {
 
             <div>';
 
-            $html .= $this->renderPage($partialPage);
+            $html .= $this->renderPage($partialPage,$productos);
 
             $html.= '</div>
 
@@ -74,15 +74,15 @@ class JustView {
         </body>
         </html>';
 
-        return $html;
+        echo $html;
     }
 
 
-    function renderPage($partialPage){
+    function renderPage($partialPage,$productos){
         if($partialPage == 'home'){
             return $this->showHome();
         } elseif($partialPage == 'categoria'){
-            return $this->showCategoria();
+            return $this->showCategoria($productos);
         } elseif ($partialPage == 'producto'){
             return $this->showProducto();
         } else {
@@ -267,7 +267,7 @@ class JustView {
         return $html;
     }
 
-    function showCategoria(){
+    function showCategoria($productos){
         $html= '<!---------------------------------------------CONTENT--------------------------------->
         <ul class="breadcrumb">
             <li><a href="home"><i class="fas fa-home"></i></a></li>
@@ -322,11 +322,12 @@ class JustView {
                             <th>Descripción</th>
                             <th>Tamaño</th>
                             <th>Precio</th>
-                            <th></th>
+                            <!--<th></th>-->
                         </tr>
                     </thead>
-                    <tbody id="body-tabla">
-                    </tbody>
+                    <tbody id="body-tabla">';
+                      $html.= $this->cargarTabla($productos);
+                  $html.='  </tbody>
                 </table>
                 <p class="ofertas">* Los articulos resaltados con <span class="intermitente"> este color</span> son las ofertas semanales.</p>
                 
@@ -334,15 +335,15 @@ class JustView {
         
             <section class="form-productos" id="js-form-agregar">
                 <h2 class="titulo-categoria" id="js-titulo-formulario">Agregar productos</h2>
-                <form class="formulario-agregar-producto">
-                    <input type="text" id="nombre-tabla" name="Nombre producto" placeholder="Nombre producto" required>
+                <form action="insert" method="post" class="formulario-agregar-producto">
+                    <input type="text" id="nombre-tabla" name="Nombre_Producto" placeholder="Nombre producto" required>
                     <input type="text" id="descripcion-tabla" name="Descripcion" placeholder="Descripcion" required>
-                    <input type="text" id="tamaño-tabla" name="Tamaño" placeholder="Tamaño" required>
+                    <input type="text" id="tamaño-tabla" name="Tamano" placeholder="Tamaño" required>
                     <input type="text" id="precio-tabla" name="Precio" placeholder="Precio" required>
+                    <input type="text" id="categoria-tabla" name="Categoria" placeholder="Categoria" required>
                     <button id="btn-agregar-tabla" class="btn-form-productos">Agregar producto</button>
                 </form>
-                <button id="btn-agregar-varios-tabla" class="btn-form-productos">Agregar Varios</button>
-                <button id="btn-vaciar-tabla" class="btn-form-productos "> Vaciar Tabla </button>
+  
             </section>
         
         </article>
@@ -356,6 +357,24 @@ class JustView {
 
     function showError(){
         return '<h1>No se puede mostrar la pagina</h1>';
+    }
+
+
+
+    function cargarTabla($productos){
+        $html='';
+        foreach($productos as $producto){
+            $html.='<tr>
+                    <td>'.$producto->nombre.'</td>
+                    <td>'.$producto->descripcion.'</td>
+                    <td>'.$producto->tamano.' ml</td>
+                    <td>$ '.$producto->precio.'</td></tr>';
+        }
+        return $html;
+    }
+
+    function ShowHomeLocation($location){
+        header("Location: ".BASE_URL.$location);
     }
 
     
