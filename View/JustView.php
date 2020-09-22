@@ -1,14 +1,17 @@
 <?php
 
-class JustView {
+class JustView
+{
 
     private $title;
 
-    function __construct(){
+    function __construct()
+    {
         $this->title = "Just - Cosmetica Natural";
     }
 
-    function showPage($partialPage,$productos=null,$categorias=null){
+    function showPage($partialPage, $productos = null, $categorias = null)
+    {
 
         $html = '<!DOCTYPE html>
         <html lang="en">
@@ -16,7 +19,7 @@ class JustView {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>'.$this->title.'</title>
+            <title>' . $this->title . '</title>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
             <link rel="stylesheet" href="css/main.css">
             <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
@@ -46,6 +49,7 @@ class JustView {
                         <li class="input-busqueda">
                             <i class="fas fa-search"></i><input type="search" placeholder="Buscar">
                         </li>
+                        <li><a href="login"><i class="fas fa-user"></a></i></li>
                     </ul>
                 </nav>
             </header>
@@ -55,9 +59,9 @@ class JustView {
 
             <div>';
 
-            $html .= $this->renderPage($partialPage,$productos,$categorias);
+        $html .= $this->renderPage($partialPage, $productos, $categorias);
 
-            $html.= '</div>
+        $html .= '</div>
 
             <!-----------------------------------------FOOTER-------------------------------------->
             <footer class="footer">
@@ -79,19 +83,21 @@ class JustView {
     }
 
 
-    function renderPage($partialPage,$productos, $categorias){
-        if($partialPage == 'home'){
+    function renderPage($partialPage, $productos, $categorias)
+    {
+        if ($partialPage == 'home') {
             return $this->showHome();
-        } elseif($partialPage == 'categoria'){
+        } elseif ($partialPage == 'categoria') {
             return $this->showCategoria($productos, $categorias);
-        } elseif ($partialPage == 'producto'){
+        } elseif ($partialPage == 'producto') {
             return $this->showProducto();
         } else {
             return $this->showError();
         }
     }
 
-    function showHome(){
+    function showHome()
+    {
         $html = '<!---------------------------------------------CONTENT--------------------------------->
         <div class="banner">
             <img src="./images/justrojo.png" alt="Just Logo">
@@ -244,7 +250,8 @@ class JustView {
         return $html;
     }
 
-    function showProducto(){
+    function showProducto()
+    {
         $html = '<!---------------------------------------------CONTENT--------------------------------->
         <ul class="breadcrumb">
             <li><a href="home"><i class="fas fa-home"></i></a></li>
@@ -268,8 +275,9 @@ class JustView {
         return $html;
     }
 
-    function showCategoria($productos, $categorias){
-        $html= '<!---------------------------------------------CONTENT--------------------------------->
+    function showCategoria($productos, $categorias)
+    {
+        $html = '<!---------------------------------------------CONTENT--------------------------------->
         <ul class="breadcrumb">
             <li><a href="home"><i class="fas fa-home"></i></a></li>
             <li>Aromaterapia</li>
@@ -327,8 +335,8 @@ class JustView {
                         </tr>
                     </thead>
                     <tbody id="body-tabla">';
-                      $html.= $this->cargarTabla($productos);
-                  $html.='  </tbody>
+        $html .= $this->cargarTabla($productos);
+        $html .= '  </tbody>
                 </table>
                 <p class="ofertas">* Los articulos resaltados con <span class="intermitente"> este color</span> son las ofertas semanales.</p>
                 
@@ -343,10 +351,10 @@ class JustView {
                     <input type="text" id="precio-tabla" name="Precio" placeholder="Precio" required step="any">
                     <label for="select-categoria">Seleccione una Categoría</label>
                     <select name="eleccion" id="select-categoria">';
-                        
-                    $html.= $this->cargarCategorias($categorias);
-                       
-                    $html.='</select>
+
+        $html .= $this->cargarCategorias($categorias);
+
+        $html .= '</select>
                     <button id="btn-agregar-tabla" class="btn-form-productos">Agregar producto</button>
                 </form>
   
@@ -361,39 +369,108 @@ class JustView {
         return $html;
     }
 
-    function showError(){
+    function showError()
+    {
         return '<h1>No se puede mostrar la pagina</h1>';
     }
 
-    function cargarCategorias($categorias){
+    function cargarCategorias($categorias)
+    {
         $html = '';
         foreach ($categorias as $categoria) {
-            $html.='<option value="'.$categoria->nombre.'">'.$categoria->nombre.'</option>';
+            $html .= '<option value="' . $categoria->nombre . '">' . $categoria->nombre . '</option>';
         }
 
         return $html;
     }
 
 
-    function cargarTabla($productos){
-        $html='';
-        foreach($productos as $producto){
-            $html.='<tr>
-                    <td>'.$producto->nombre.'</td>
-                    <td>'.$producto->descripcion.'</td>
-                    <td>'.$producto->tamano.' ml</td>
-                    <td>$ '.$producto->precio.'</td>
-                    <td><a href="categoria/delete/'.$producto->id.'">Borrar</a></button></td></tr>';
+    function cargarTabla($productos)
+    {
+        $html = '';
+        foreach ($productos as $producto) {
+            $html .= '<tr>
+                    <td>' . $producto->nombre . '</td>
+                    <td>' . $producto->descripcion . '</td>
+                    <td>' . $producto->tamano . ' ml</td>
+                    <td>$ ' . $producto->precio . '</td>
+                    <td> <a href="categoria/delete/' . $producto->id . '"><button class="btn-tabla-borrar"><i class="far fa-trash-alt"></i></button></a></td></tr>';
         }
         return $html;
     }
 
-    function ShowHomeLocation($location){
-        header("Location: ".BASE_URL.$location);
+    function showLogin()
+    {
+        $html = '<!DOCTYPE html>
+            <html>
+            <head>
+                <title>Login Page</title>
+                <!--Made with love by Mutiullah Samim -->
+            
+                <!--Bootsrap 4 CDN-->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            
+                <!--Fontawesome CDN-->
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+            
+                <!--Custom styles-->
+                <link rel="stylesheet" type="text/css" href="css/styleLogin.css">
+            </head>
+            <body>
+            <div class="container">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Sign In</h3>
+                            <div class="d-flex justify-content-end social_icon">
+                                <span><i class="fab fa-facebook-square"></i></span>
+                                <span><i class="fab fa-google-plus-square"></i></span>
+                                <span><i class="fab fa-twitter-square"></i></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="username">
+            
+                                </div>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="password">
+                                </div>
+                                <div class="row align-items-center remember">
+                                    <input type="checkbox">Remember Me
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Login" class="btn float-right login_btn">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">';
+        /*  <div class="d-flex justify-content-center links">
+              Don't have an account?<a href="#">Sign Up</a>
+          </div> */
+        $html .= '<div class="d-flex justify-content-center">
+                                <a href="#">Forgot your password?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </body>
+            </html>';
+        echo $html;
     }
 
-    
-
+    function ShowHomeLocation($location)
+    {
+        header("Location: " . BASE_URL . $location);
+    }
 
 
 }

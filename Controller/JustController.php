@@ -28,6 +28,10 @@ class JustController{
          $this->view->showPage('producto');
     }
 
+    function Login(){
+        $this->view->showLogin();
+    }
+
 
     function InsertProducto(){
         $categorias=$this->model->getIdCategoriaByNombre($_POST['eleccion']);

@@ -12,6 +12,7 @@
     $r->addRoute("home", "GET", "JustController", "Home");
     $r->addRoute("categoria", "GET", "JustController", "Categoria");
     $r->addRoute("producto", "GET", "JustController", "Producto");
+    $r->addRoute("login", "GET", "JustController", "Login");
 
     //Insertar Elemento
     $r->addRoute("insert", "POST", "JustController", "InsertProducto");
