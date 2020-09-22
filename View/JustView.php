@@ -378,7 +378,7 @@ class JustView {
                     <td>'.$producto->descripcion.'</td>
                     <td>'.$producto->tamano.' ml</td>
                     <td>$ '.$producto->precio.'</td>
-                    <td><a href="delete/'.$producto->id.'">Borrar</a></button></td></tr>';
+                    <td><a href="categoria/delete/'.$producto->id.'">Borrar</a></button></td></tr>';
         }
         return $html;
     }
