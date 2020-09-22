@@ -323,7 +323,7 @@ class JustView {
                             <th>Descripción</th>
                             <th>Tamaño</th>
                             <th>Precio</th>
-                            <!--<th></th>-->
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="body-tabla">';
@@ -377,7 +377,8 @@ class JustView {
                     <td>'.$producto->nombre.'</td>
                     <td>'.$producto->descripcion.'</td>
                     <td>'.$producto->tamano.' ml</td>
-                    <td>$ '.$producto->precio.'</td></tr>';
+                    <td>$ '.$producto->precio.'</td>
+                    <td><a href="delete/'.$producto->id.'">Borrar</a></button></td></tr>';
         }
         return $html;
     }

@@ -31,6 +31,11 @@ class JustModel{
         $sentencia->execute(array($nombre,$descripcion,$tamano,$precio,$id_categoria));
     }
 
+    function deleteProducto($id_producto){
+        $sentencia = $this->db->prepare("DELETE FROM producto WHERE id=?");
+        $sentencia->execute(array($id_producto));
+    }
+
 }
 
 ?>

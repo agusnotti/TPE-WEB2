@@ -16,6 +16,8 @@
     //Insertar Elemento
     $r->addRoute("insert", "POST", "JustController", "InsertProducto");
 
+    //Borrar Elemento
+    $r->addRoute("delete/:ID", "GET", "JustController", "DeleteProducto");
     //Ruta por defecto.
     $r->setDefaultRoute("JustController", "Home");
 

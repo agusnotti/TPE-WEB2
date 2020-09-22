@@ -35,6 +35,12 @@ class JustController{
         $this->model->insertProducto($_POST['Nombre_Producto'],$_POST['Descripcion'],$_POST['Tamano'],$_POST['Precio'],$categorias[0]->id);
         $this->view->ShowHomeLocation('categoria');
     }
+
+    function DeleteProducto($id_producto = null){
+        $id = $id_producto[':ID'];
+        $this->model->deleteProducto($id);
+        $this->view->ShowHomeLocation('categoria');
+    }
 }
 
 
