@@ -8,7 +8,7 @@ class JustView {
         $this->title = "Just - Cosmetica Natural";
     }
 
-    function showPage($partialPage,$productos=null){
+    function showPage($partialPage,$productos=null,$categorias=null){
 
         $html = '<!DOCTYPE html>
         <html lang="en">
@@ -55,7 +55,7 @@ class JustView {
 
             <div>';
 
-            $html .= $this->renderPage($partialPage,$productos);
+            $html .= $this->renderPage($partialPage,$productos,$categorias);
 
             $html.= '</div>
 
@@ -79,11 +79,11 @@ class JustView {
     }
 
 
-    function renderPage($partialPage,$productos){
+    function renderPage($partialPage,$productos, $categorias){
         if($partialPage == 'home'){
             return $this->showHome();
         } elseif($partialPage == 'categoria'){
-            return $this->showCategoria($productos);
+            return $this->showCategoria($productos, $categorias);
         } elseif ($partialPage == 'producto'){
             return $this->showProducto();
         } else {
@@ -268,7 +268,7 @@ class JustView {
         return $html;
     }
 
-    function showCategoria($productos){
+    function showCategoria($productos, $categorias){
         $html= '<!---------------------------------------------CONTENT--------------------------------->
         <ul class="breadcrumb">
             <li><a href="home"><i class="fas fa-home"></i></a></li>
@@ -342,14 +342,11 @@ class JustView {
                     <input type="text" id="tamaño-tabla" name="Tamano" placeholder="Tamaño" required>
                     <input type="text" id="precio-tabla" name="Precio" placeholder="Precio" required step="any">
                     <label for="select-categoria">Seleccione una Categoría</label>
-                    <select name="eleccion" id="select-categoria">
-                       <option value="Aromaterapia">Aromaterapia</option> 
-                        <option value="Rostro">Rostro</option>
-                         <option value="Manos">Manos</option>
-                         <option value="Cuerpo">Cuerpo</option>                         
-                         <option value="Labios">Labios</option>
-                         <option value="Piernas">Piernas</option>
-                    </select>
+                    <select name="eleccion" id="select-categoria">';
+                        
+                    $html.= $this->cargarCategorias($categorias);
+                       
+                    $html.='</select>
                     <button id="btn-agregar-tabla" class="btn-form-productos">Agregar producto</button>
                 </form>
   
@@ -368,6 +365,14 @@ class JustView {
         return '<h1>No se puede mostrar la pagina</h1>';
     }
 
+    function cargarCategorias($categorias){
+        $html = '';
+        foreach ($categorias as $categoria) {
+            $html.='<option value="'.$categoria->nombre.'">'.$categoria->nombre.'</option>';
+        }
+
+        return $html;
+    }
 
 
     function cargarTabla($productos){

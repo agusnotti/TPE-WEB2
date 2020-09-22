@@ -14,15 +14,14 @@ class JustController{
 
     }
 
-    function Home(){
-        
+    function Home(){        
         $this->view->showPage('home');
-
     }
 
     function Categoria(){
          $productos=$this->model->getProductos();
-         $this->view->showPage('categoria',$productos);
+         $categorias = $this->model->getCategorias();
+         $this->view->showPage('categoria',$productos, $categorias);
     }
 
     function Producto(){
