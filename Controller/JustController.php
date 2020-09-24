@@ -15,7 +15,8 @@ class JustController{
     }
 
     function Home(){        
-        $this->view->showPage('home');
+        $productos=$this->model->getProductos();
+        $this->view->showPage('home', $productos);
     }
 
     function Categoria(){

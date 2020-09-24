@@ -31,7 +31,7 @@ class JustView
             <header class="header">
                 <div class="btn_menu">
                     <a href="#"><i class="fas fa-bars"></i></a>
-                    <div><i class="fas fa-search"></i><input type="search" placeholder="Buscar"></div>
+                    <div><i class="fas fa-search"> </i><input type="search" placeholder="Buscar"> </div>
                 </div>
                 <nav class="nav">
                     <ul class="nav-items nav-izquierdo">
@@ -44,8 +44,6 @@ class JustView
                     </ul>
         
                     <ul class="nav-items nav-derecho">
-                        <li><a href="#sobre-nosotros" class="link-sobre-nosotros">Nosotros</a></li>
-                        <li><a href="#formulario-contacto" class="link-contacto">Contacto</a></li>
                         <li class="input-busqueda">
                             <i class="fas fa-search"></i><input type="search" placeholder="Buscar">
                         </li>
@@ -59,9 +57,9 @@ class JustView
 
             <div>';
 
-        $html .= $this->renderPage($partialPage, $productos, $categorias);
+            $html .= $this->renderPage($partialPage, $productos, $categorias);
 
-        $html .= '</div>
+            $html .= '</div>
 
             <!-----------------------------------------FOOTER-------------------------------------->
             <footer class="footer">
@@ -82,11 +80,10 @@ class JustView
         echo $html;
     }
 
-
     function renderPage($partialPage, $productos, $categorias)
     {
         if ($partialPage == 'home') {
-            return $this->showHome();
+            return $this->showHome($productos);
         } elseif ($partialPage == 'categoria') {
             return $this->showCategoria($productos, $categorias);
         } elseif ($partialPage == 'producto') {
@@ -96,70 +93,16 @@ class JustView
         }
     }
 
-    function showHome()
+    function showHome($productos)
     {
         $html = '<!---------------------------------------------CONTENT--------------------------------->
         <div class="banner">
             <img src="./images/justrojo.png" alt="Just Logo">
         </div>
         
-        <div class="btn-filtros-mobile">
-            <a href="#">Filtros <i class="fas fa-sliders-h"></i></a>
-        </div>
-        
         <div class="container">
-            <aside class="container-filtros">
-                <h3>Filtrar</h3>
-        
-                <div class="categoria-filtros">
-                    <h4>Aromaterapia</h4>
-                    <ul>
-                        <li><input type="checkbox">Aceites esenciales</li>
-                        <li><input type="checkbox">Aroma Blends</li>
-                    </ul>
-                </div>
-                <div class="categoria-filtros">
-                    <h4>Bienestar Fisico</h4>
-                    <ul>
-                        <li><input type="checkbox">Uso Frecuente</li>
-                        <li><input type="checkbox">Cuidados femeninos</li>
-                        <li><input type="checkbox">Respiración</li>
-                        <li><input type="checkbox">Relajacion muscular</li>
-                    </ul>
-                </div>
-                <div class="categoria-filtros">
-                    <h4>Bienestar Emocional</h4>
-                    <ul>
-                        <li><input type="checkbox">Relajacion</li>
-                        <li><input type="checkbox">Concentracion</li>
-                        <li><input type="checkbox">Armonia</li>
-                        <li><input type="checkbox">Relajacion muscular</li>
-                    </ul>
-                </div>
-                <div class="categoria-filtros">
-                    <h4>Aroma</h4>
-                    <ul>
-                        <li><input type="checkbox">Malva</li>
-                        <li><input type="checkbox">Lavanda</li>
-                        <li><input type="checkbox">Naranja</li>
-                        <li><input type="checkbox">Limon</li>
-                        <li><input type="checkbox">Enebro</li>
-                        <li><input type="checkbox">Tomillo</li>
-                        <li><input type="checkbox">Manzanilla</li>
-                    </ul>
-                </div>
-                <div class="categoria-filtros">
-                    <h4>Precio</h4>
-                    <ul>
-                        <li><input type="checkbox">$0 - $500</li>
-                        <li><input type="checkbox">$500 - $1000</li>
-                        <li><input type="checkbox">$1000 - $1500</li>
-                        <li><input type="checkbox">$1500 - $2000</li>
-                    </ul>
-                </div>
-        
-                <button class="btn-aplicar-filtros">Aplicar filtros</button>
-            </aside>
+
+            <h1>ALGUN TITULITO</h1>
         
             <article class="container-imagenes">
                 <a href="categoria">
@@ -187,61 +130,28 @@ class JustView
                     <img src="images/img_index6.png" alt="Cuidado de piernas">
                 </a>
             </article>
-        
-            <article class="contacto">
-                <section id="sobre-nosotros" class="container-empresa">
-                    <div class="empresa">
-                        <h2>¿Quienes somos?</h2>
-                        <p>Desde sus principios, Just fue creada para liberar la excelencia de la naturaleza
-                            -y sus poderes restauradores- buscando llegar a miles de personas alrededor del mundo. </p>
-                        <a class="ver-mas">Leer mas <i class="far fa-plus-square"></i></a>
-                        <p class="mobile-hidden" id="parrafo-adicional">Los productos Just se basan en recetas de bienestar
-                            que utilizan prácticas ancestrales
-                            con hierbas medicinales para atender necesidades cotidianas. En el corazón de cada una de
-                            nuestras fórmulas se encuentran los poderes restauradores de plantas oriundas de los Alpes
-                            Suizos con potentes componentes activos que brindan propiedades de bienestar y belleza
-                            extraordinarias. Mediante técnicas avanzadas de investigación y desarrollo, Just se vale
-                            de la ciencia y la innovación para la creación de sus productos a base de aceites esenciales
-                            y extractos de plantas naturales.</p>
-                        <a class="ver-menos mobile-hidden">Leer menos <i class="far fa-minus-square"></i></a>
-                    </div>
-                </section>
-                <section class="container-formulario">
-                    <h2>Contáctenos</h2>
-                    <p>Para realizar una consulta, adquirir u obtener información acerca de nuestros productos completa
-                        este formulario y un/a representante se contactará a la brevedad. Gracias!</p>
-        
-                    <form id="formulario-contacto">
-                        <div class="formulario">
-                            <input type="text" name="nombre" placeholder="Nombre" id="nombreformulario" required>
-                            <input type="text" name="apellido" placeholder="Apellido" id="apellidoformulario" required>
-                        </div>
-                        <div class="formulario">
-                            <input type="text" name="codArea" placeholder="Cod. Área" id="codAreaformulario">
-                            <input type="text" name="telefono" placeholder="Teléfono" id="telefonoformulario" required>
-                        </div>
-                        <div class="formulario">
-                            <input type="text" class="correo-formulario" name="correo" placeholder="Email" id="correoformulario"
-                                required>
-                        </div>
-                        <div class="formulario">
-                            <textarea name="textarea" id="mensajeformulario" rows="" cols="20"
-                                placeholder="Dejenos su mensaje"></textarea>
-                        </div>
-                        <div class="formulario">
-                            <p>Ingrese el siguiente número:</p>
-                        </div>
-                        <div class="captcha">
-                            <h1 id="captcha-codigo"></h1>
-                            <input type="number" name="captcha" id="input-captcha" required>
-                            <input type="submit" input id="boton-formulario" class="boton-formulario" value="Enviar" />
-                        </div>
-        
-                        <div class="validacion-captcha" id="mensajeCaptcha">
-                            <p id="captcha-mensaje"></p>
-                        </div>
-                    </form>
-                </section>
+
+            <article class="productos">
+                <section class="tabla-productos">
+                    <h2 class="titulo-categoria">Lista de productos</h2>                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Descripción</th>
+                                <th>Tamaño</th>
+                                <th>Precio</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-tabla">';
+                            $html .= $this->cargarTabla($productos);
+                            $html .= '  
+                        </tbody>
+                    </table>
+                    <p class="ofertas">* Los articulos resaltados con <span class="intermitente"> este color</span> son las ofertas semanales.</p>
+                    
+                </section>        
             </article>
         </div>
         
@@ -349,8 +259,7 @@ class JustView
                     <input type="text" id="descripcion-tabla" name="Descripcion" placeholder="Descripcion" required>
                     <input type="text" id="tamaño-tabla" name="Tamano" placeholder="Tamaño" required>
                     <input type="text" id="precio-tabla" name="Precio" placeholder="Precio" required step="any">
-                    <label for="select-categoria">Seleccione una Categoría</label>
-                    <select name="eleccion" id="select-categoria">';
+                    <label for="select-categoria">Seleccione una Categoría</label><select name="eleccion" id="select-categoria">';
 
         $html .= $this->cargarCategorias($categorias);
 
