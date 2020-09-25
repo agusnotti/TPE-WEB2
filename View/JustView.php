@@ -20,10 +20,11 @@ class JustView
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>' . $this->title . '</title>
+            <base href="'.BASE_URL.'">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-            <link rel="stylesheet" href="css/main.css">
+            <link rel="stylesheet" href="./css/main.css">
             <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
-            
+
         </head>
         
         <body>
@@ -34,16 +35,15 @@ class JustView
                     <div><i class="fas fa-search"> </i><input type="search" placeholder="Buscar"> </div>
                 </div>
                 <nav class="nav">
-                    <ul class="nav-items nav-izquierdo">
-                        <li><a href="categoria">Aromaterapia</a></li>
-                        <li><a href="categoria">Rostro</a></li>
-                        <li><a href="categoria">Manos</a></li>
-                        <li><a href="categoria">Cuerpo</a></li>
-                        <li><a href="categoria">Labios</a></li>
-                        <li><a href="categoria">Piernas</a></li>
-                    </ul>
-        
-                    <ul class="nav-items nav-derecho">
+                        <ul class="nav-items nav-izquierdo">';
+                            foreach ($categorias as $categoria) {
+                                $html.='<li><a href="categoria/'.$categoria->nombre.'">'.$categoria->nombre.'</a></li>';
+                            }
+                        $html.='</ul>
+            
+                        <ul class="nav-items nav-derecho">
+
+
                         <li class="input-busqueda">
                             <i class="fas fa-search"></i><input type="search" placeholder="Buscar">
                         </li>
@@ -83,7 +83,7 @@ class JustView
     function renderPage($partialPage, $productos, $categorias)
     {
         if ($partialPage == 'home') {
-            return $this->showHome($productos);
+            return $this->showHome($productos, $categorias);
         } elseif ($partialPage == 'categoria') {
             return $this->showCategoria($productos, $categorias);
         } elseif ($partialPage == 'producto') {
@@ -93,7 +93,7 @@ class JustView
         }
     }
 
-    function showHome($productos)
+    function showHome($productos, $categorias)
     {
         $html = '<!---------------------------------------------CONTENT--------------------------------->
         <div class="banner">
@@ -104,32 +104,16 @@ class JustView
 
             <h1>ALGUN TITULITO</h1>
         
-            <article class="container-imagenes">
-                <a href="categoria">
-                    <h3>Aromaterapia</h3>
-                    <img src="images/img_index1.png" alt="Aromaterapia">
-                </a>
-                <a href="categoria">
-                    <h3>Cuidado de labios</h3>
-                    <img src="images/img_index5.png" alt="Cuidado de labios">
-                </a>
-                <a href="categoria">
-                    <h3>Cuidado del cabello</h3>
-                    <img src="images/img_index2.png" alt="Cuidado del cabello">
-                </a>
-                <a href="categoria">
-                    <h3>Cuidado del cuerpo</h3>
-                    <img src="images/img_index3.png" alt="Cuidado del cuerpo">
-                </a>
-                <a href="categoria">
-                    <h3>Cuidado del rostro</h3>
-                    <img src="images/img_index4.png" alt="Cuidado del rostro">
-                </a>
-                <a href="categoria">
-                    <h3>Cuidado de piernas</h3>
-                    <img src="images/img_index6.png" alt="Cuidado de piernas">
-                </a>
-            </article>
+            <article class="container-imagenes">';
+
+                foreach ($categorias as $categoria) {
+                    $html.= '<a href="categoria/'.$categoria->nombre.'">
+                        <h3>'.$categoria->nombre.'</h3>
+                        <img src="images/'.$categoria->nombre.'.png" alt="Aromaterapia">
+                    </a>';
+                }
+            
+            $html.='</article>
 
             <article class="productos">
                 <section class="tabla-productos">

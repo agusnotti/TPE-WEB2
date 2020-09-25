@@ -11,18 +11,19 @@ class JustController{
     function __construct(){
         $this->view = new JustView();
         $this->model = new JustModel();
-
     }
 
     function Home(){        
         $productos=$this->model->getProductos();
-        $this->view->showPage('home', $productos);
+        $categorias = $this->model->getCategorias();
+        $this->view->showPage('home', $productos, $categorias);
     }
 
-    function Categoria(){
-         $productos=$this->model->getProductos();
-         $categorias = $this->model->getCategorias();
-         $this->view->showPage('categoria',$productos, $categorias);
+    function Categoria($nombreCategoria = null){
+        $nombre = $nombreCategoria[':nombreCategoria'];
+        $productos=$this->model->getProductosByCategoria($nombre);
+        $categorias = $this->model->getCategorias();
+        $this->view->showPage('categoria',$productos, $categorias);
     }
 
     function Producto(){

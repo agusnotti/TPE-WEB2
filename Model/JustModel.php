@@ -20,6 +20,13 @@ class JustModel{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
+    function getProductosByCategoria($nombreCategoria){
+        $sentencia = $this->db->prepare("SELECT p.* FROM producto p INNER JOIN categoria c ON c.id = p.id_categoria
+        WHERE c.nombre=?");
+        $sentencia->execute(array($nombreCategoria));
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function getProductos(){
         $sentencia = $this->db->prepare("SELECT * FROM producto");
         $sentencia->execute();
