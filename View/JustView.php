@@ -10,7 +10,7 @@ class JustView
         $this->title = "Just - Cosmetica Natural";
     }
 
-    function showPage($partialPage, $productos = null, $categorias = null)
+    function showPage($partialPage, $categorias, $productos = null)
     {
 
         $html = '<!DOCTYPE html>
@@ -125,6 +125,7 @@ class JustView
                                 <th>Descripción</th>
                                 <th>Tamaño</th>
                                 <th>Precio</th>
+                                <th>Categoria</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -132,9 +133,7 @@ class JustView
                             $html .= $this->cargarTabla($productos);
                             $html .= '  
                         </tbody>
-                    </table>
-                    <p class="ofertas">* Los articulos resaltados con <span class="intermitente"> este color</span> son las ofertas semanales.</p>
-                    
+                    </table>                    
                 </section>        
             </article>
         </div>
@@ -215,9 +214,7 @@ class JustView
         
         <article class="productos">
             <section class="tabla-productos">
-                <h2 class="titulo-categoria">Lista de productos</h2>
-                <label for="js-input-filter">Filtrar</label><input id="js-input-filter" type="text" placeholder="">
-                
+                <h2 class="titulo-categoria">Lista de productos</h2>                
                 <table>
                     <thead>
                         <tr>
@@ -225,14 +222,14 @@ class JustView
                             <th>Descripción</th>
                             <th>Tamaño</th>
                             <th>Precio</th>
+                            <th>Categoria</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody id="body-tabla">';
-        $html .= $this->cargarTabla($productos);
-        $html .= '  </tbody>
+                    $html .= $this->cargarTabla($productos);
+                    $html .= '</tbody>
                 </table>
-                <p class="ofertas">* Los articulos resaltados con <span class="intermitente"> este color</span> son las ofertas semanales.</p>
                 
             </section>
         
@@ -287,6 +284,7 @@ class JustView
                     <td>' . $producto->descripcion . '</td>
                     <td>' . $producto->tamano . ' ml</td>
                     <td>$ ' . $producto->precio . '</td>
+                    <td>' . $producto->nombre_categoria . '</td>
                     <td> <a href="categoria/delete/' . $producto->id . '"><button class="btn-tabla-borrar"><i class="far fa-trash-alt"></i></button></a></td></tr>';
         }
         return $html;
