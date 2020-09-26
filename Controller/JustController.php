@@ -16,19 +16,24 @@ class JustController{
     function Home(){        
         $productos=$this->model->getProductos();
         $categorias = $this->model->getCategorias();
-        $this->view->showPage('home', $categorias, $productos);
+        $this->view->showHome($categorias, $productos);
     }
 
-    function Categoria($nombreCategoria = null){
-        $nombre = $nombreCategoria[':nombreCategoria'];
+    function Categoria($params = null){
+        $nombre = $params[':nombreCategoria'];
         $productos=$this->model->getProductosByCategoria($nombre);
+        $categoria = $this->model->getCategoriaByNombre($nombre);
         $categorias = $this->model->getCategorias();
-        $this->view->showPage('categoria',$categorias, $productos);
+        $this->view->showCategoria($productos, $categorias, $categoria);
     }
 
-    function Producto(){
+    function Producto($params = null){ //parametros que vienen de la url
+        $nombre = $params[':nombreCategoria'];
+        $productoID = $params[':ID'];
+        $categoria = $this->model->getCategoriaByNombre($nombre);
+        $producto = $this->model->getProductoById($productoID);
         $categorias = $this->model->getCategorias();
-        $this->view->showPage('producto', $categorias);
+        $this->view->showProducto($categorias, $producto, $categoria);
     }
 
     function Login(){
@@ -37,8 +42,8 @@ class JustController{
 
 
     function InsertProducto(){
-        $categorias=$this->model->getIdCategoriaByNombre($_POST['eleccion']);
-        $this->model->insertProducto($_POST['Nombre_Producto'],$_POST['Descripcion'],$_POST['Tamano'],$_POST['Precio'],$categorias[0]->id);
+        $categoria=$this->model->getCategoriaByNombre($_POST['eleccion']);
+        $this->model->insertProducto($_POST['Nombre_Producto'],$_POST['Descripcion'],$_POST['Tamano'],$_POST['Precio'],$categoria->id);
         $this->view->ShowHomeLocation('categoria');
     }
 

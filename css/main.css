@@ -382,6 +382,9 @@ ul.breadcrumb li a:hover {
     width: 25%;
   }
 
+
+  
+
   /*---------------------------------------------- NAV ---------------------------------------------*/
 
   .nav {
@@ -415,9 +418,7 @@ ul.breadcrumb li a:hover {
 
   /*---------------------------------------------- CONTEINER GENERAL ---------------------------------------------*/
   .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    text-align: center;
   }  
 
   /*---------------------------------------------- IMAGENES ---------------------------------------------*/
@@ -476,10 +477,11 @@ ul.breadcrumb li a:hover {
   .container-producto {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
   .container-producto img {
-    width: 50%;
+    width: 42%;
   }
 
   .descripcion-producto {

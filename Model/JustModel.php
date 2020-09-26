@@ -14,16 +14,22 @@ class JustModel{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getIdCategoriaByNombre($nombre){
+    function getCategoriaByNombre($nombre){
         $sentencia = $this->db->prepare("SELECT * FROM categoria WHERE nombre=?");
         $sentencia->execute(array($nombre));
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
     function getProductosByCategoria($nombreCategoria){
         $sentencia = $this->db->prepare("SELECT p.*, c.nombre as nombre_categoria FROM producto p INNER JOIN categoria c ON c.id = p.id_categoria WHERE c.nombre=?");
         $sentencia->execute(array($nombreCategoria));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function getProductoById($id_producto){
+        $sentencia = $this->db->prepare("SELECT * FROM `producto` p WHERE id=?");
+        $sentencia->execute(array($id_producto));
+        return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
     function getProductos(){
