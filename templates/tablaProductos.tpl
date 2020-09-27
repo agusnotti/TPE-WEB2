@@ -15,15 +15,15 @@
             <tbody id="body-tabla">
 
                 {foreach from=$productos item=producto}
-                    <tr>
+                    <tr id="{$producto->id}">
                         <td >{$producto->nombre}</td>
                         <td >{$producto->descripcion}</td>
                         <td >{$producto->tamano}</td>
                         <td class="td-prodPrecio">$ {$producto->precio}</td>
                         <td>{$producto->nombre_categoria}</td>
                         <td>
-                            <a href="categoria/{$producto->nombre_categoria}/producto/{$producto->id}">
-                                <button class="btn-tabla-borrar"><i class="fas fa-eye"></i></button>
+                            <a href="categoria/{$producto->nombre_categoria}/producto/{$producto->id}" role="button"  data-toggle="modal" data-target="#staticBackdrop">
+                                <button class="btn-tabla-ver" i><i class="fas fa-eye"></i></button>
                             </a>
                         </td>
                     </tr>

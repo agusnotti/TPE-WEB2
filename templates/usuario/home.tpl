@@ -1,9 +1,7 @@
-{include file="header.tpl"}
-
+{include file="../header.tpl"}
+{include file="./nav.tpl"}
 <!---------------------------------------------CONTENT--------------------------------->
-<div class="banner">
-    <img src="./images/justrojo.png" alt="Just Logo">
-</div>
+{include file="../banner.tpl"}
 
 <div class="container">
 
@@ -21,13 +19,11 @@
 
     </article>
 
-    {include file="tablaProductos.tpl"}
+    {include file="../tablaProductos.tpl"}
+    {include file="./modal.tpl"}
 
-    
 </div>
 
-<!-----------------------------------------FIN CONTENT--------------------------------->
-
 <!--------------------------------------------- FIN CONTENT------------------------------>
-
-{include file="footer.tpl"}
+{include file="./redesSociales.tpl"}
+{include file="../footer.tpl"}
