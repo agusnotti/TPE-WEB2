@@ -1,6 +1,10 @@
 <?php
-    
-    require_once 'Controller/JustController.php';
+    require_once 'Model/Model.php';
+    require_once 'View/View.php';
+    require_once 'Controller/Controller.php';
+    require_once 'Controller/CategoriaController.php';
+    require_once 'Controller/ProductoController.php';
+    require_once 'Controller/AdministradorController.php';
     require_once 'RouterClass.php';
     
     // CONSTANTES PARA RUTEO
@@ -9,19 +13,19 @@
     $r = new Router();
 
     // rutas
-    $r->addRoute("home", "GET", "JustController", "Home");
-    $r->addRoute("categoria/:nombreCategoria", "GET", "JustController", "Categoria");
-    $r->addRoute("categoria/:nombreCategoria/producto/:ID", "GET", "JustController", "Producto");
-    $r->addRoute("login", "GET", "JustController", "Login");
+    $r->addRoute("home", "GET", "Controller", "Home");
+    $r->addRoute("categoria/:nombreCategoria", "GET", "CategoriaController", "Categoria");
+    $r->addRoute("categoria/:nombreCategoria/producto/:ID", "GET", "CategoriaController", "Producto");
+    $r->addRoute("login", "GET", "AdministradorController", "Login");
     
 
     //Insertar Elemento
-    $r->addRoute("insert", "POST", "JustController", "InsertProducto");
+    $r->addRoute("insert", "POST", "ProductotController", "InsertProducto");
 
     //Borrar Elemento
-    $r->addRoute("categoria/delete/:ID", "GET", "JustController", "DeleteProducto");
+    $r->addRoute("categoria/delete/:ID", "GET", "ProductoController", "DeleteProducto");
     //Ruta por defecto.
-    $r->setDefaultRoute("JustController", "Home");
+    $r->setDefaultRoute("Controller", "Home");
 
     
 
