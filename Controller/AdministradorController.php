@@ -12,6 +12,9 @@ class AdministradorController extends Controller{
         $this->loginModel = new AdministradorModel();
     }
 
+    /**
+     * Muestra vista de administrador
+     */
     function Login(){
         $this->loginView->showLogin();
     }

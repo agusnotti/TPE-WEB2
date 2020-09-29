@@ -21,7 +21,10 @@ class Controller{
         $this->categoriaView = new CategoriaView();
     }
 
-
+    /**
+     * Obtiene los datos necesarios para mostrar en el home las diferentes categorias 
+     * y la tabla con la cantidad total de productos
+     */
     function Home(){        
         $productos=$this->productoModel->getProductos();
         $categorias = $this->categoriaModel->getCategorias();

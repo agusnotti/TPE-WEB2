@@ -11,6 +11,7 @@ class View{
         // inicializo Smarty
         $this->smarty = new Smarty();
 
+        //  asigno variables para mostrar
         $this->smarty->assign('tituloPagina', $this->tituloPagina);
         $this->smarty->assign('baseURL', BASE_URL);
     }
@@ -21,7 +22,7 @@ class View{
         $this->smarty->assign('categorias', $categorias);
         $this->smarty->assign('productos', $productos);
 
-        //mostrar template
+        //  muestro template
         $this->smarty->display('./templates/usuario/home.tpl');
     }
 
@@ -29,6 +30,7 @@ class View{
         header("Location: " . BASE_URL . $location);
     }
 
+    // Muestra un mensaje en caso de no encontrar la pagina
     function showError(){
         return '<h1>No se puede mostrar la pagina</h1>';
     }
