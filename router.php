@@ -15,15 +15,15 @@
     // rutas
     $r->addRoute("home", "GET", "Controller", "Home");
     $r->addRoute("categoria/:nombreCategoria", "GET", "CategoriaController", "Categoria");
-    $r->addRoute("categoria/:nombreCategoria/producto/:ID", "GET", "CategoriaController", "Producto");
+    $r->addRoute("categoria/:nombreCategoria/producto/:ID", "GET", "ProductoController", "Producto");
     $r->addRoute("login", "GET", "AdministradorController", "Login");
     
-
     //Insertar Elemento
     $r->addRoute("insert", "POST", "ProductotController", "InsertProducto");
 
     //Borrar Elemento
     $r->addRoute("categoria/delete/:ID", "GET", "ProductoController", "DeleteProducto");
+    
     //Ruta por defecto.
     $r->setDefaultRoute("Controller", "Home");
 

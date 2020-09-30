@@ -15,6 +15,7 @@ body {
   position: sticky;
   top: 0;
   background-color: #f5d6ff;
+  z-index: 1;
 }
 
 .carousel{
@@ -355,11 +356,7 @@ ul.breadcrumb li a:hover {
 
 .descripcion-producto {
   text-align: center;
-  padding: 20px;
-}
-
-.descripcion-producto p {
-  text-align: justify;
+  padding: 50px;
 }
 
 .descripcion-producto button {
@@ -480,15 +477,9 @@ ul.breadcrumb li a:hover {
   /*---------------------------------------------- PRODUCTO ---------------------------------------------*/
   .container-producto {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
   }
 
   .container-producto img {
     width: 42%;
-  }
-
-  .descripcion-producto {
-    padding: 50px;
   }
 }

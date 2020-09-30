@@ -16,6 +16,7 @@ class View{
         $this->smarty->assign('baseURL', BASE_URL);
     }
 
+    // ### HOME
     function showHome($categorias, $productos){
         //asigno variables para mostrar
         $this->smarty->assign('tituloHome', "Conoce nuestro productos");

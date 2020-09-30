@@ -22,7 +22,7 @@
                         <td class="td-prodPrecio">$ {$producto->precio}</td>
                         <td>{$producto->nombre_categoria}</td>
                         <td>
-                            <a href="categoria/{$producto->nombre_categoria}/producto/{$producto->id}" role="button"  data-toggle="modal" data-target="#staticBackdrop">
+                            <a href="categoria/{$producto->nombre_categoria}/producto/{$producto->id}">
                                 <button class="btn-tabla-ver" i><i class="fas fa-eye"></i></button>
                             </a>
                         </td>

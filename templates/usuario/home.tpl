@@ -20,7 +20,6 @@
     </article>
 
     {include file="../tablaProductos.tpl"}
-    {include file="./modal.tpl"}
 
 </div>
 
