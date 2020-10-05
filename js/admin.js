@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     //### PRODUCTO
-
     let inputNombre = document.getElementById('nombre-tabla');
     let inputDescripcion = document.getElementById('descripcion-tabla');
     let inputTamano = document.getElementById('tamaño-tabla');
@@ -39,8 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         inputTamano.value = prodTamano;
         inputPrecio.value = prodPrecio;
     }
-
-
 
     //### CATEGORIA
     let inputNombreCategoria = document.getElementById('nombre-categoria');

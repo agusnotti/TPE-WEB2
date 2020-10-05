@@ -15,7 +15,6 @@ class CategoriaController extends Controller{
         $this->categoriaView->showCategoria($productos, $categorias, $categoria);
     }
 
-
     /**
      * crea un nuevo categoria en base a datos ingresados por formulario
      */

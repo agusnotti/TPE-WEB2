@@ -1,16 +1,13 @@
 <?php
 require_once "./View/AdministradorView.php";
-require_once "./Model/AdministradorModel.php";
 require_once "./Controller/LoginController.php";
 
 class AdministradorController extends LoginController{ //extiendo de LoginController donde esta la funcion para chequear si el usuario esta logueado
 
     protected $adminView;
-    protected $adminModel;
 
     function __construct(){
         $this->adminView = new AdministradorView();
-        $this->adminModel = new AdministradorModel();
         parent::__construct();      
     }
 
@@ -34,5 +31,4 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
         $categorias = $this->categoriaModel->getCategorias();
         $this->adminView->showAdminCategorias($categorias, $isLogged);
     }
-    
 }

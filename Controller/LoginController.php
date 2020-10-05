@@ -58,6 +58,7 @@ class LoginController extends Controller{
         header("Location: " . LOGIN);
     }
 
+    //devuelve si esta logueado
     function isLogged(){
         $isLogged = false;
         if (isset($_SESSION['EMAIL'])) {
@@ -66,7 +67,7 @@ class LoginController extends Controller{
         return $isLogged;
     }
 
-    //NO ESTA FUNCIONANDO ......DONDE VA ESTA FUNCION Y DESDE DONDE LA LLAMO?
+    //verifica si esta logueado
     function checkLoggedIn(){
         session_start();
 
