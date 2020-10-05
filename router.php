@@ -41,13 +41,13 @@
 
     //### ABM CATEGORIA
         //Insertar Elemento
-    $r->addRoute("insert", "POST", "CategoriaController", "InsertCategoria");
+    $r->addRoute("insert-categoria", "POST", "CategoriaController", "InsertCategoria");
 
         //Borrar Elemento
-    $r->addRoute("delete/:ID", "GET", "CategoriaController", "DeleteCategoria");
+    $r->addRoute("delete-categoria/:ID", "GET", "CategoriaController", "DeleteCategoria");
 
         //Modificar Elemento
-    $r->addRoute("update/:ID", "POST", "CategoriaController", "UpdateCategoria");
+    $r->addRoute("update-categoria/:ID", "POST", "CategoriaController", "UpdateCategoria");
     
 
 

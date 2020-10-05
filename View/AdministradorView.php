@@ -19,9 +19,10 @@ class AdministradorView extends View{
         $this->smarty->display('./templates/administrador/adminProductos.tpl');
     }
 
-    function showAdminCategorias($categorias){
+    function showAdminCategorias($categorias, $isLogged){
         $this->smarty->assign('isAdminCategoria', true);
         $this->smarty->assign('categorias', $categorias);
+        $this->smarty->assign('isLogged', $isLogged);
         $this->smarty->display('./templates/administrador/adminCategorias.tpl');
     }
 }

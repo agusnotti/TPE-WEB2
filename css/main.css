@@ -197,13 +197,15 @@ input[type="search"] {
 }
 
 /* --------------------------------------------- FORMULARIO --------------------------------------------- */
-.form-productos {
+.form-productos,
+.form-categorias {
   background-color: #fdf7ff;
   padding: 20px;
   margin: 20px auto 20px auto;
 }
 
-.form-productos {
+.form-productos,
+.form-categorias{
   text-align: center;
 }
 
@@ -303,7 +305,8 @@ ul.breadcrumb li a:hover {
 /*---------------------------------------------- TABLA DE PRECIOS ---------------------------------------------*/
 .tabla-productos,
 .form-productos,
-.tabla-categorias {
+.tabla-categorias,
+.form-categorias {
   margin: 0px;
   width: 100%;
   display: flex;
@@ -381,7 +384,8 @@ ul.breadcrumb li a:hover {
 }
 
 .btn-tabla-ver,
-.btn-tabla-editar {
+.btn-tabla-editar,
+.btn-tabla-editar-categoria {
   background-color: #026278;
 }
 
@@ -390,9 +394,9 @@ ul.breadcrumb li a:hover {
 }
 
 .btn-tabla-ver,
-.btn-filtros-tabla,
 .btn-tabla-editar,
-.btn-tabla-borrar {
+.btn-tabla-borrar,
+.btn-tabla-editar-categoria{
   border: none;
   color: white;
   text-decoration: none;
@@ -538,12 +542,14 @@ ul.breadcrumb li a:hover {
     margin-bottom: 20px;
   }
 
-  .form-productos {
+  .form-productos,
+  .form-categorias {
     width: 50%;
     margin: 0;
   }
 
-  .form-productos {
+  .form-productos,
+  .form-categorias {
     background-color: inherit;
     padding: 0;
   }

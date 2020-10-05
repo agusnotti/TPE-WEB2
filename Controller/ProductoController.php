@@ -37,6 +37,9 @@ class ProductoController extends Controller{
         $this->productoView->ShowLocation('administrador/productos');
     }
 
+    /**
+     * modifica un producto
+     */
     function UpdateProducto($id_producto = null){
         $id = $id_producto[':ID'];
         $nombre = $_POST['Nombre_Producto'];

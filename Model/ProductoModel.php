@@ -45,6 +45,9 @@ class ProductoModel extends Model{
         $sentencia->execute(array($id_producto));
     }
 
+    /**
+     * Modifica un producto de la base de datos
+     */
     function updateProducto($id_producto, $nombre, $descripcion, $tamano, $precio, $id_categoria){
         $sentencia = $this->db->prepare('UPDATE producto SET nombre=?, descripcion=?, tamano=?, precio=?, id_categoria=? WHERE id=?');
         $sentencia->execute(array($nombre, $descripcion, $tamano, doubleval($precio), $id_categoria, $id_producto));

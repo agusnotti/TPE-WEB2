@@ -6,3 +6,5 @@
     {include file="./tablaCategorias.tpl"}
     {include file="./formCategoria.tpl"}
 </div>
+
+{include file="../footer.tpl"}

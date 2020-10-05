@@ -14,11 +14,11 @@
                     <tr id="{$categoria->id}">
                         <td>{$categoria->nombre}</td>
                         <td>
-                            <a href="delete/{$categoria->id}">
+                            <a href="delete-categoria/{$categoria->id}">
                                 <button class="btn-tabla-borrar"><i class="far fa-trash-alt"></i></button>
                             </a>
-                            <a href="update/{$categoria->id}">
-                                <button class="btn-tabla-editar"><i class="fas fa-edit"></i></button>
+                            <a>
+                                <button class="btn-tabla-editar-categoria"><i class="fas fa-edit"></i></button>
                             </a>
                         </td>
                     </tr>

@@ -19,4 +19,28 @@ class CategoriaModel extends Model{
         $sentencia->execute(array($nombre));
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
+
+    /**
+     * Inserta un categoria en la base de datos
+     */
+    function insertCategoria($nombre,$id_categoria){
+        $sentencia = $this->db->prepare("INSERT INTO categoria(nombre, id) VALUES(?,?)");
+        $sentencia->execute(array($nombre,$id_categoria));
+    }
+
+    /**
+     * Elimina un categoria de la base de datos
+     */
+    function deleteCategoria($id_categoria){
+        $sentencia = $this->db->prepare("DELETE FROM categoria WHERE id=?");
+        $sentencia->execute(array($id_categoria));
+    }
+
+    /**
+     * Modifica un categoria de la base de datos
+     */
+    function updateCategoria($nombre, $id_categoria){
+        $sentencia = $this->db->prepare('UPDATE categoria SET nombre=? WHERE id=?');
+        $sentencia->execute(array($nombre,  $id_categoria));
+    }
 }
