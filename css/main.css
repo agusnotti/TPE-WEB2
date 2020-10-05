@@ -18,7 +18,7 @@ body {
   z-index: 1;
 }
 
-.carousel{
+.carousel {
   justify-content: center;
 }
 
@@ -35,7 +35,8 @@ body {
   width: 70%;
 }
 
-.mobile-hidden, .oculto {
+.mobile-hidden,
+.oculto {
   display: none;
 }
 
@@ -56,15 +57,40 @@ ul.nav-items {
   background-color: #fbefff;
 }
 
+.nav.nav-tabs.tabs-admin {
+  justify-content: center;
+}
+
+.btn-admin:hover{
+  background-color: #164f5a;
+  text-decoration: none;
+  color: aliceblue;
+}
+
 .nav-items li,
-.nav-items li a{
+.nav-items li a,
+.item-nav-admin li a {
   margin: 3px;
   padding: 3px;
   padding-top: 15px;
   color: #03829e;
-  font-size: large;
   font-weight: bold;
   text-decoration: none;
+}
+
+.item-nav-admin {
+  list-style: none;
+  padding: 10px;
+  font-size: 30px;
+  margin: 0;
+}
+
+.nav-admin-logout {
+  justify-content: flex-end !important;
+}
+
+.nav-admin-back {
+  justify-content: flex-start !important;
 }
 
 .ver-mas,
@@ -77,10 +103,15 @@ ul.nav-items {
   font-size: 10px;
 }
 
+.item-nav-admin:hover {
+  color: #026278;
+  font-size: x-large;
+}
+
 .nav-items li:hover,
 .nav-items li a:hover {
   color: #026278;
-  font-size: larger;
+  font-size: large;
 }
 
 .btn_menu {
@@ -104,6 +135,24 @@ input[type="search"] {
   height: 30px;
 }
 
+.container-admin-productos,
+.container-admin-categorias{
+  display: flex;
+  padding: 50px;
+}
+
+.container-admin-categorias{
+  justify-content: center;
+}
+
+.categorias,
+.form-categoria{
+  width: 50%;
+}
+
+.tabla-categorias h2{
+  text-align: center;
+}
 
 /* --------------------------------------------- IMAGENES --------------------------------------------- */
 .container-imagenes {
@@ -253,62 +302,70 @@ ul.breadcrumb li a:hover {
 
 /*---------------------------------------------- TABLA DE PRECIOS ---------------------------------------------*/
 .tabla-productos,
-.form-productos {
+.form-productos,
+.tabla-categorias {
   margin: 0px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .tabla-productos th,
-.tabla-productos td {
-  width: 20%;
+.tabla-productos td,
+.tabla-categorias th,
+.tabla-categorias td {
+  width: 15%;
   border-bottom: 1px solid rgb(214, 156, 185);
   padding: 10px 0;
   text-align: center;
   font-size: 15px;
 }
 
-.tabla-productos th {
+.tabla-productos th,
+.tabla-categorias th {
   background-color: rgb(194, 129, 162);
   color: #fdf7ff;
 }
 
 /*---intercala los colores de las filas*/
 
-.tabla-productos tbody tr:nth-child(odd) {
+.tabla-productos tbody tr:nth-child(odd),
+.tabla-categorias tbody tr:nth-child(odd) {
   background-color: white;
 }
 
-.tabla-productos tbody tr:nth-child(even) {
+.tabla-productos tbody tr:nth-child(even),
+.tabla-categorias tbody tr:nth-child(even) {
   background-color: #fdf7ff;
 }
 
-.tabla-productos tbody 
-{
+.tabla-productos tbody,
+.tabla-categorias tbody{
   color: #e675ca;
   font-weight: bold;
 }
 
-.color-resaltado-1{
+.color-resaltado-1 {
   color: red;
 }
-.color-resaltado-2{
-  color:blue;
+.color-resaltado-2 {
+  color: blue;
 }
-.color-resaltado-3{
+.color-resaltado-3 {
   color: green;
 }
-.color-resaltado-4{
-  color:violet;
+.color-resaltado-4 {
+  color: violet;
 }
-.color-resaltado-5{
-  color:orange;
+.color-resaltado-5 {
+  color: orange;
 }
 
-.no-coincidencias{
+.no-coincidencias {
   font-weight: bold;
 }
 
-.ofertas{
+.ofertas {
   font-size: 12px;
   text-align: center;
 }
@@ -323,25 +380,28 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
 }
 
-
-.btn-tabla-ver{
+.btn-tabla-ver,
+.btn-tabla-editar {
   background-color: #026278;
 }
 
-.btn-filtros-tabla, .btn-tabla-editar{
-  background-color: rgb(194, 129, 162);
+.btn-tabla-borrar {
+  background-color: red;
 }
 
-
-.btn-tabla-ver, .btn-filtros-tabla, .btn-tabla-editar {  
+.btn-tabla-ver,
+.btn-filtros-tabla,
+.btn-tabla-editar,
+.btn-tabla-borrar {
   border: none;
   color: white;
   text-decoration: none;
   cursor: pointer;
-  height: 20px;
+  height: 30px;
+  width: 30px;
   border-radius: 3px;
   margin: 1px;
-
+  padding: 2px;
 }
 /* ============================================== HTML PRODUCTO ============================================== */
 
@@ -384,9 +444,6 @@ ul.breadcrumb li a:hover {
     width: 25%;
   }
 
-
-  
-
   /*---------------------------------------------- NAV ---------------------------------------------*/
 
   .nav {
@@ -421,7 +478,24 @@ ul.breadcrumb li a:hover {
   /*---------------------------------------------- CONTEINER GENERAL ---------------------------------------------*/
   .container {
     text-align: center;
-  }  
+  }
+
+  .container-admin {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .btn-admin {
+    background-color: #026278;
+    border-radius: 5px;
+    width: 50%;
+    padding: 50px;
+    font-size: xx-large;
+    margin: 25px;
+    text-decoration: none;
+    color: aliceblue;
+  }
 
   /*---------------------------------------------- IMAGENES ---------------------------------------------*/
   .container-imagenes {
@@ -432,7 +506,6 @@ ul.breadcrumb li a:hover {
   .container-imagenes img {
     margin: 0 30px 30px 30px;
   }
-
 
   /*---------------------------------------------- EMPRESA  ---------------------------------------------*/
   .ver-mas,
@@ -460,7 +533,8 @@ ul.breadcrumb li a:hover {
   }
 
   /*---------------------------------------------- TABLA DE PRODUCTOS ---------------------------------------------*/
-  .productos {
+  .productos,
+  .categorias {
     margin-bottom: 20px;
   }
 

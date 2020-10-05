@@ -5,10 +5,12 @@
     require_once 'Controller/CategoriaController.php';
     require_once 'Controller/ProductoController.php';
     require_once 'Controller/AdministradorController.php';
+    require_once 'Controller/LoginController.php';
     require_once 'RouterClass.php';
     
     // CONSTANTES PARA RUTEO
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+    define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
 
     $r = new Router();
 
@@ -16,19 +18,41 @@
     $r->addRoute("home", "GET", "Controller", "Home");
     $r->addRoute("categoria/:nombreCategoria", "GET", "CategoriaController", "Categoria");
     $r->addRoute("categoria/:nombreCategoria/producto/:ID", "GET", "ProductoController", "Producto");
-    $r->addRoute("login", "GET", "AdministradorController", "Login");
-    
-    //Insertar Elemento
-    $r->addRoute("insert", "POST", "ProductotController", "InsertProducto");
 
-    //Borrar Elemento
-    $r->addRoute("categoria/delete/:ID", "GET", "ProductoController", "DeleteProducto");
+    //### LOGIN
+    $r->addRoute("login", "GET", "LoginController", "Login");
+    $r->addRoute("verificarAdmin", "POST", "LoginController", "Verificar");
+    $r->addRoute("logout", "GET", "LoginController", "Logout");
+
+    //### ADMIN
+    $r->addRoute("administrador", "GET", "AdministradorController", "Administrador");
+    $r->addRoute("administrador/productos", "GET", "AdministradorController", "AdministrarProductos");
+    $r->addRoute("administrador/categorias", "GET", "AdministradorController", "AdministrarCategorias");
     
+    //### ABM PRODUCTO
+        //Insertar Elemento
+    $r->addRoute("insert", "POST", "ProductoController", "InsertProducto");
+
+        //Borrar Elemento
+    $r->addRoute("delete/:ID", "GET", "ProductoController", "DeleteProducto");
+
+        //Modificar Elemento
+    $r->addRoute("update/:ID", "POST", "ProductoController", "UpdateProducto");
+
+    //### ABM CATEGORIA
+        //Insertar Elemento
+    $r->addRoute("insert", "POST", "CategoriaController", "InsertCategoria");
+
+        //Borrar Elemento
+    $r->addRoute("delete/:ID", "GET", "CategoriaController", "DeleteCategoria");
+
+        //Modificar Elemento
+    $r->addRoute("update/:ID", "POST", "CategoriaController", "UpdateCategoria");
+    
+
+
     //Ruta por defecto.
     $r->setDefaultRoute("Controller", "Home");
 
-    
-
     //run
-    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
-?>
+    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

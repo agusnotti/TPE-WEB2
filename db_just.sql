@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-09-2020 a las 00:46:56
+-- Tiempo de generación: 04-10-2020 a las 21:58:41
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_just`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id`, `nombre`) VALUES
+(1, 'Aromaterapia'),
+(2, 'Manos'),
+(4, 'Rostro'),
+(5, 'Cuerpo'),
+(6, 'Labios'),
+(7, 'Piernas');
 
 -- --------------------------------------------------------
 
@@ -41,19 +64,40 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `tamano`, `precio`, `id_categoria`) VALUES
-(14, 'Aceite de Geranio', 'Aceite', 15, 500, 5),
-(15, 'Aceite de Lavanda', 'Aceite', 25, 700, 5),
-(19, 'Aceite de Manzanilla', 'Aceite', 50, 1300, 5),
-(20, 'Aceite de Menta', 'Aceite', 40, 1100, 5),
-(21, 'Aceite de Fruta', 'Aceite', 35, 900, 5),
-(22, 'Aceite de Manzana', 'Aceite', 25, 1500, 5),
-(23, 'Aceite de Limon', 'Aceite', 10, 1200, 5),
-(24, 'probando', 'asd', 1, 2, 5),
-(25, 'probandoagregaracuerpo', 'sasd', 25, 450, 8);
+(13, 'Aceite Esencial de Bergamota', 'Gotas de Felicidad. ', 10, 200, 1),
+(14, 'Aceite Esencial de Limón', 'Inspiración.', 10, 500, 1),
+(15, 'Aceite Esencial de Naranja', 'Anti-conflicto.', 10, 200, 1),
+(16, 'Crema de Malva para el Rostro', 'Confort extra para pieles sensibles.', 50, 1000, 4),
+(17, 'Mascarilla Purificante de Moambe Amarillo para el Rostro', 'Cuidado anti-acné. Piel limpia y fresca todos los días.', 100, 1000, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `email`, `password`) VALUES
+(1, 'admin@admin.com', '$2y$10$enp6enczpu04ta6eUk6nZe8l0N78kUeluiKt9ECXiZ2CDAXr7rsLS');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `producto`
@@ -63,14 +107,32 @@ ALTER TABLE `producto`
   ADD KEY `FK_id_categoria` (`id_categoria`) USING BTREE;
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

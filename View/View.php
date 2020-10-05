@@ -27,7 +27,7 @@ class View{
         $this->smarty->display('./templates/usuario/home.tpl');
     }
 
-    function ShowHomeLocation($location){
+    function ShowLocation($location){
         header("Location: " . BASE_URL . $location);
     }
 

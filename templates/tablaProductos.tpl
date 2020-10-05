@@ -16,15 +16,24 @@
 
                 {foreach from=$productos item=producto}
                     <tr id="{$producto->id}">
-                        <td >{$producto->nombre}</td>
-                        <td >{$producto->descripcion}</td>
-                        <td >{$producto->tamano}</td>
+                        <td>{$producto->nombre}</td>
+                        <td>{$producto->descripcion}</td>
+                        <td>{$producto->tamano}</td>
                         <td class="td-prodPrecio">$ {$producto->precio}</td>
                         <td>{$producto->nombre_categoria}</td>
                         <td>
-                            <a href="categoria/{$producto->nombre_categoria}/producto/{$producto->id}">
-                                <button class="btn-tabla-ver" i><i class="fas fa-eye"></i></button>
-                            </a>
+                            {if !isset($isLogged)}
+                                <a href="categoria/{$producto->nombre_categoria}/producto/{$producto->id}">
+                                    <button class="btn-tabla-ver"><i class="fas fa-eye"></i></button>
+                                </a>
+                            {else}
+                                <a href="delete/{$producto->id}">
+                                    <button class="btn-tabla-borrar"><i class="far fa-trash-alt"></i></button>
+                                </a>
+                                <a>
+                                    <button class="btn-tabla-editar"><i class="fas fa-edit"></i></button>
+                                </a>
+                            {/if}
                         </td>
                     </tr>
                 {/foreach}
