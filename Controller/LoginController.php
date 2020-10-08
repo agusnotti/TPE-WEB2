@@ -22,7 +22,7 @@ class LoginController extends Controller{
         session_start();
         if($this->isLogged()){
             header("Location: " . BASE_URL . "administrador");
-        }else{g
+        }else{
             $this->loginView->showLogin();
         }
     }
