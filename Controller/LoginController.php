@@ -19,7 +19,12 @@ class LoginController extends Controller{
      * Muestra vista de login
      */
     function Login(){
-        $this->loginView->showLogin();
+        session_start();
+        if($this->isLogged()){
+            header("Location: " . BASE_URL . "administrador");
+        }else{
+            $this->loginView->showLogin();
+        }
     }
 
     /**
