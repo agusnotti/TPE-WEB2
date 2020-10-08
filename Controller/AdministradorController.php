@@ -20,6 +20,7 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
     }
 
     function AdministrarProductos(){
+        $this->checkLoggedIn();
         $isLogged = $this->isLogged();
         $productos = $this->productoModel->getProductos();
         $categorias = $this->categoriaModel->getCategorias();
@@ -27,6 +28,7 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
     }
 
     function AdministrarCategorias(){
+        $this->checkLoggedIn();
         $isLogged = $this->isLogged();
         $categorias = $this->categoriaModel->getCategorias();
         $this->adminView->showAdminCategorias($categorias, $isLogged);

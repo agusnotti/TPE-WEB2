@@ -19,7 +19,7 @@ class LoginController extends Controller{
      * Muestra vista de login
      */
     function Login(){
-        session_start();
+       
         if($this->isLogged()){
             header("Location: " . BASE_URL . "administrador");
         }else{
@@ -65,6 +65,8 @@ class LoginController extends Controller{
 
     //devuelve si esta logueado
     function isLogged(){
+        session_start();
+
         $isLogged = false;
         if (isset($_SESSION['EMAIL'])) {
             $isLogged = true;
