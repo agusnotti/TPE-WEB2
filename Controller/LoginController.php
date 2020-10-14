@@ -65,7 +65,10 @@ class LoginController extends Controller{
 
     //devuelve si esta logueado
     function isLogged(){
-        session_start();
+        //veo que estado de la session
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
         $isLogged = false;
         if (isset($_SESSION['EMAIL'])) {

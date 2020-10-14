@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2020 a las 21:58:41
+-- Tiempo de generación: 14-10-2020 a las 02:11:49
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -41,8 +41,8 @@ INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (2, 'Manos'),
 (4, 'Rostro'),
 (5, 'Cuerpo'),
-(6, 'Labios'),
-(7, 'Piernas');
+(12, 'Labios'),
+(13, 'Piernas');
 
 -- --------------------------------------------------------
 
@@ -64,11 +64,21 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `tamano`, `precio`, `id_categoria`) VALUES
-(13, 'Aceite Esencial de Bergamota', 'Gotas de Felicidad. ', 10, 200, 1),
+(13, 'Aceite Esencial de Bergamota', 'Gotas de Felicidad. ', 10, 250, 1),
 (14, 'Aceite Esencial de Limón', 'Inspiración.', 10, 500, 1),
 (15, 'Aceite Esencial de Naranja', 'Anti-conflicto.', 10, 200, 1),
 (16, 'Crema de Malva para el Rostro', 'Confort extra para pieles sensibles.', 50, 1000, 4),
-(17, 'Mascarilla Purificante de Moambe Amarillo para el Rostro', 'Cuidado anti-acné. Piel limpia y fresca todos los días.', 100, 1000, 4);
+(30, 'Desmaquillante Micelar Vital Just', 'Desmaquillante sin enjuague y a base de agua', 150, 400, 4),
+(31, 'Mascarilla Purificante de Moambe Amarillo', 'Cuidado anti-acné. Piel limpia y fresca todos los días.', 50, 500, 4),
+(32, 'Crema de Manzanilla para Manos', 'Protección y rejuvenecimiento', 100, 700, 2),
+(33, 'Hand Gel - Gel para manos con Naranja y Flores de Tilo', 'Crema protectora que concentra las propiedades reconfortantes y relajantes de la manzanilla.', 50, 800, 2),
+(34, 'Crema para Labios de Caléndula', 'Cuidado Labial', 50, 400, 12),
+(35, 'Crema para el Contorno de Labios', 'con Edelweiss y Alga de la Nieve', 50, 300, 12),
+(36, 'Pedibalm - Loción para Piernas', 'Reconforta las piernas cansadas', 150, 500, 13),
+(37, 'Bálsamo - Loción Corporal con Árnica y Hamamelis', 'Alivio instantáneo siempre a mano', 400, 1000, 5),
+(38, 'Crema de Tea Tree, Manuca y Rosalina', 'Regenera', 150, 500, 5),
+(39, 'Loción Cremosa Corporal de Almendras', 'Confort para tu piel seca y desnutrida', 250, 2000, 5),
+(40, 'Sun Care - Protector Solar FPS 25', 'Protege', 150, 400, 5);
 
 -- --------------------------------------------------------
 
@@ -120,13 +130,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
