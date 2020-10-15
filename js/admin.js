@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let inputDescripcion = document.getElementById('descripcion-tabla');
     let inputTamano = document.getElementById('tamaño-tabla');
     let inputPrecio = document.getElementById('precio-tabla');
+    let selectCategoria = document.getElementById('select-categoria');
     let tituloForm = document.getElementById('js-titulo-formulario');
     let btnForm = document.getElementById('btn-agregar-tabla');
     let form = document.querySelector('.formulario-agregar-producto');
@@ -27,16 +28,18 @@ document.addEventListener('DOMContentLoaded', function() {
         let prodDescripcion = tds[3].textContent;
         let prodTamano = tds[5].textContent;
         let prodPrecio = tds[7].textContent.replace('$ ', ''); //elimina el $ y el espacio
-        
+        let prodCategoria = tds[9].textContent;
+
         form.setAttribute('action', 'update/'+tr.id);
-        cargarInputs(prodNombre, prodDescripcion, prodTamano, prodPrecio);
+        cargarInputs(prodNombre, prodDescripcion, prodTamano, prodPrecio, prodCategoria);
     }
 
-    function cargarInputs(prodNombre, prodDescripcion, prodTamano, prodPrecio) { 
+    function cargarInputs(prodNombre, prodDescripcion, prodTamano, prodPrecio, prodCategoria) { 
         inputNombre.value = prodNombre;
         inputDescripcion.value = prodDescripcion;
         inputTamano.value = prodTamano;
         inputPrecio.value = prodPrecio;
+        selectCategoria.value = prodCategoria;
     }
 
     //### CATEGORIA
