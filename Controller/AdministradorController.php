@@ -15,7 +15,7 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
      * Muestra vista de administrador
      */
     function Administrador(){
-        $this->checkLoggedIn(); // QUE HACE ESTO?
+        $this->checkLoggedIn();
         $this->adminView->showAdminPage();
     }
 

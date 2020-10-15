@@ -23,7 +23,3 @@
 
 {include file="./redesSociales.tpl"}
 {include file="../footer.tpl"}
-
-{* display: flex;
-    flex-direction: column;
-    justify-content: center; *}
