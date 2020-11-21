@@ -33,4 +33,35 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
         $categorias = $this->categoriaModel->getCategorias();
         $this->adminView->showAdminCategorias($categorias, $isLogged);
     }
+
+    function AdministrarUsuarios(){
+        $this->checkLoggedIn();
+        $isLogged = $this->isLogged();
+        $username = $this->getLoggedUsername();
+        $usuarios = $this->loginModel->getUsuarios($username);
+        $this->adminView->showAdminUsuarios($usuarios, $isLogged);
+    }
+
+    function HabilitarPermisos($params = null){
+        $id_user = $params[':ID'];
+        $this->CambiarPermisos($id_user, true);
+    }
+
+    function DeshabilitarPermisos($params = null){
+        $id_user = $params[':ID'];
+        $this->CambiarPermisos($id_user, false);
+    }
+
+    function CambiarPermisos($usuario, $permiso){
+        $this->loginModel->modificarPermisos($usuario, $permiso);
+        header("Location: " . BASE_URL . "administrador/usuarios");
+    }
+
+    function DeleteUsuario($params = null){
+        $id = $params[':ID'];
+        $this->loginModel->deleteUsuario($id);
+        header("Location: " . BASE_URL . "administrador/usuarios");
+    }
+
+
 }

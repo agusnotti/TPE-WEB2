@@ -23,11 +23,20 @@
     $r->addRoute("login", "GET", "LoginController", "Login");
     $r->addRoute("verificarAdmin", "POST", "LoginController", "Verificar");
     $r->addRoute("logout", "GET", "LoginController", "Logout");
+    $r->addRoute("registrar", "GET", "LoginController", "Registrar");
+    $r->addRoute("signIn", "POST", "LoginController", "SignIn");
 
     //### ADMIN
     $r->addRoute("administrador", "GET", "AdministradorController", "Administrador");
     $r->addRoute("administrador/productos", "GET", "AdministradorController", "AdministrarProductos");
     $r->addRoute("administrador/categorias", "GET", "AdministradorController", "AdministrarCategorias");
+    $r->addRoute("administrador/usuarios", "GET", "AdministradorController", "AdministrarUsuarios");
+    $r->addRoute("administrador/usuarios/habilitar/:ID", "GET", "AdministradorController", "HabilitarPermisos");
+    $r->addRoute("administrador/usuarios/deshabilitar/:ID", "GET", "AdministradorController", "DeshabilitarPermisos");
+    $r->addRoute("administrador/usuarios/delete/:ID", "GET", "AdministradorController", "DeleteUsuario");
+    
+
+
     
     //### ABM PRODUCTO
         //Insertar Elemento

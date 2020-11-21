@@ -15,4 +15,5 @@
 <div class="container-admin">
     <a class="btn-admin" href="administrador/productos">Administrar Productos</a>
     <a class="btn-admin" href="administrador/categorias">Administrar Categorias</a>
+    <a class="btn-admin" href="administrador/usuarios">Administrar Usuario</a>
 </div>

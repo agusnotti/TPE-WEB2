@@ -13,7 +13,13 @@
                     {$mensaje}
                 </div>
             {/if}
-            <h3>Sign In</h3>
+
+            {if isset($isLogin)}
+                <h3>Log In</h3>
+            {else}
+                <h3>Sign In</h3>
+            {/if}
+            
             <div class="d-flex justify-content-end social_icon">
                 <span><i class="fab fa-facebook-square"></i></span>
                 <span><i class="fab fa-google-plus-square"></i></span>
@@ -22,32 +28,47 @@
         </div>
 
         <div class="card-body">
-            <form action="verificarAdmin" method="post">
+
+            {if isset($isLogin)}
+                <form action="verificarAdmin" method="post">
+            {else}
+                <form action="signIn" method="post">
+            {/if}
+            
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
                     <input type="text" class="form-control" placeholder="username" name="input_user">
                 </div>
-
+            
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                     </div>
                     <input type="password" class="form-control" placeholder="password" name="input_password">
                 </div>
-
+            
                 <div class="form-group">
-                    <input type="submit" value="Login" class="btn float-right login_btn">
+                    {if isset($isLogin)}
+                        <input type="submit" value="Login" class="btn float-right login_btn">
+                    {else}
+                        <input type="submit" value="Sign in" class="btn float-right login_btn">
+                    {/if}
                 </div>
-            </form>
+            </form> 
+            
         </div>
 
-        <div class="card-footer">
-            <div class="d-flex justify-content-between">
-                <a href="#">Registrarme</a>
-                <a href="#">¿Olvidaste la contraseña?</a>
+        {if isset($isLogin)}
+            <div class="card-footer">
+                <div class="d-flex justify-content-between">
+                    <a href="registrar">Registrarme</a>
+                    <a href="#">¿Olvidaste la contraseña?</a>
+                </div>
             </div>
-        </div>
+        {/if}
+
+        
     </div>
 </div>

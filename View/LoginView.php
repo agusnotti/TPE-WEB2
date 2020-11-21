@@ -12,4 +12,11 @@ class LoginView extends View{
          */
         $this->smarty->display('./templates/administrador/login.tpl');
     }
+
+
+    function showFormularioRegistro($mensaje = ""){
+        $this->smarty->assign('isRegistro', true);        
+        $this->smarty->assign('mensaje', $mensaje);
+        $this->smarty->display('./templates/administrador/login.tpl');
+    }
 }

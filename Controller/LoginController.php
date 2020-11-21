@@ -56,6 +56,36 @@ class LoginController extends Controller{
         }
     }
 
+    function Registrar(){
+        $this->loginView->showFormularioRegistro();
+    }
+
+    function SignIn(){
+        $user = $_POST['input_user'];
+        $pass = $_POST['input_password'];
+
+
+        if (isset($user) && !empty($user) && isset($pass) && !empty($pass)) {
+            $userFromDB = $this->loginModel->getUser($user);
+
+            if (!isset($userFromDB) || !$userFromDB) {
+                $pass = password_hash($pass, PASSWORD_DEFAULT);
+
+                $this->loginModel->addUser($user, $pass);
+
+                session_start();
+                $_SESSION['EMAIL'] = $user;
+
+                header("Location: " . BASE_URL . "home"); 
+                
+            } else {
+                $this->loginView->showFormularioRegistro('El nombre de usuario ya existe');
+            }
+        } else {
+            $this->loginView->showFormularioRegistro('Usuario o contraseña no ingresada');
+        }
+    }
+
     //destruyo la sesion iniciada al hacer logout
     function Logout(){
         session_start();
@@ -77,6 +107,22 @@ class LoginController extends Controller{
         return $isLogged;
     }
 
+    function isAdmin(){
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $isAdmin = false;
+        if (isset($_SESSION['EMAIL'])) {
+            $user = $this->loginModel->getUser($_SESSION['EMAIL']);
+  
+            if($user->permiso){
+                $isAdmin = true;
+            }
+        }
+        return $isAdmin;
+    }
+
     //verifica si esta logueado
     function checkLoggedIn(){
         session_start();
@@ -84,6 +130,20 @@ class LoginController extends Controller{
         if (!isset($_SESSION['EMAIL'])) {
             header("Location: " . LOGIN); 
             die();
+        } 
+
+        if(!$this->isAdmin()){
+            header("Location: " . BASE_URL . "home");
+            die();
+        }
+    }
+
+    //retorna el usuario actual
+    function getLoggedUsername(){
+        if (isset($_SESSION['EMAIL'])) {
+            return $_SESSION['EMAIL'];
+        } else {
+            return null;
         }
     }
 }

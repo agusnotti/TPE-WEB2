@@ -25,4 +25,11 @@ class AdministradorView extends View{
         $this->smarty->assign('isLogged', $isLogged);
         $this->smarty->display('./templates/administrador/adminCategorias.tpl');
     }
+
+    function showAdminUsuarios($usuarios, $isLogged){
+        $this->smarty->assign('isAdminUsusario', true);
+        $this->smarty->assign('usuarios', $usuarios);
+        $this->smarty->assign('isLogged', $isLogged);
+        $this->smarty->display('./templates/administrador/adminUsuarios.tpl');
+    }
 }

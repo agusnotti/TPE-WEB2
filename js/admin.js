@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
     function getInfoTablaCategoria(e){
-        console.log('hola');
         tituloFormCategoria.innerHTML = "Modificar categoria";
         btnFormCategoria.innerHTML = "Modificar categoria";
         
