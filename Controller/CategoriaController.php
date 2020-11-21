@@ -25,8 +25,15 @@ class CategoriaController extends UserController{
     function InsertCategoria(){
         $nombre = $_POST['nombre_categoria'];
         $categoria=$this->categoriaModel->getCategoriaByNombre($nombre);
-        $this->categoriaModel->insertCategoria($nombre,$categoria->id);
-        $this->categoriaView->ShowLocation('administrador/categorias');
+        if(!$categoria){
+            if($_FILES['img-categoria']['type'] == "image/jpg" || $_FILES['img-categoria']['type'] == "image/jpeg"  || $_FILES['img-categoria']['type'] == "image/png") {
+                $this->categoriaModel->insertCategoria($nombre, $_FILES['img-categoria']['tmp_name']);
+                $this->categoriaView->ShowLocation('administrador/categorias');
+            } else {
+                $this->categoriaModel->insertCategoria($nombre);
+                $this->categoriaView->ShowLocation('administrador/categorias');
+            }
+        }        
     }
 
     /**
@@ -44,7 +51,12 @@ class CategoriaController extends UserController{
     function UpdateCategoria($id_categoria = null){
         $id = $id_categoria[':ID'];
         $nombre = $_POST['nombre_categoria'];
-        $this->categoriaModel->updateCategoria($nombre, $id);
-        $this->categoriaView->ShowLocation('administrador/categorias');
+        if($_FILES['img-categoria']['type'] == "image/jpg" || $_FILES['img-categoria']['type'] == "image/jpeg"  || $_FILES['img-categoria']['type'] == "image/png") {
+            $this->categoriaModel->updateCategoria($id, $nombre, $_FILES['img-categoria']['tmp_name']);
+            $this->categoriaView->ShowLocation('administrador/categorias');
+        } else {
+            $this->categoriaModel->updateCategoria($id, $nombre);
+            $this->categoriaView->ShowLocation('administrador/categorias');
+        }
     }
 }

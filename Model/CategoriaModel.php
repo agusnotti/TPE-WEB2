@@ -23,10 +23,20 @@ class CategoriaModel extends Model{
     /**
      * Inserta un categoria en la base de datos
      */
-    function insertCategoria($nombre,$id_categoria){
-        $sentencia = $this->db->prepare("INSERT INTO categoria(nombre, id) VALUES(?,?)");
-        $sentencia->execute(array($nombre,$id_categoria));
+    function insertCategoria($nombre, $img = null){
+        $pathImg = null;
+        if ($img)
+            $pathImg = $this->uploadImage($img);
+        $sentencia = $this->db->prepare("INSERT INTO categoria(nombre, imagen) VALUES(?,?)");
+        $sentencia->execute(array($nombre,$pathImg));
     }
+
+    private function uploadImage($image){
+        $target = 'images/categorias/' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
+    }
+
 
     /**
      * Elimina un categoria de la base de datos
@@ -39,8 +49,12 @@ class CategoriaModel extends Model{
     /**
      * Modifica un categoria de la base de datos
      */
-    function updateCategoria($nombre, $id_categoria){
-        $sentencia = $this->db->prepare('UPDATE categoria SET nombre=? WHERE id=?');
-        $sentencia->execute(array($nombre,  $id_categoria));
+    function updateCategoria($id_categoria, $nombre,$img = null ){        
+        $pathImg = null;
+        if ($img)
+            $pathImg = $this->uploadImage($img);
+        $sentencia = $this->db->prepare("UPDATE categoria SET nombre=?, imagen=? WHERE id=?");
+        $sentencia->execute(array($nombre, $pathImg, intval($id_categoria)));
+
     }
 }

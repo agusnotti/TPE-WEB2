@@ -13,7 +13,7 @@
 
                 <a href="categoria/{$categoria->nombre}">
                     <h3>{$categoria->nombre}</h3>
-                    <img src="images/{$categoria->nombre}.png" alt="Aromaterapia">
+                    <img src="{$categoria->imagen}" alt="Aromaterapia">
                 </a> 
             {/foreach}      
 

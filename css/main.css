@@ -223,11 +223,15 @@ a.favorite-true{
   text-align: center;
 }
 
+input[type="file"]{
+  margin: 10px;
+}
+
 input[type="text"],
 textarea {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   padding: 5px 10px;
-  margin: 5px;
+  margin: 15px;
   border: 0;
   border-bottom: 2px solid #03829e;
 }
@@ -394,14 +398,16 @@ ul.breadcrumb li a:hover {
   text-align: center;
 }
 
-.btn-form-productos {
+.btn-form-productos, 
+.btn-form-categorias{
   background-color: rgb(194, 129, 162);
   border: none;
   color: white;
   padding: 10px 15px;
   text-decoration: none;
-  margin: 10px;
+  margin: 20px;
   cursor: pointer;
+  width: 50%;
 }
 
 .btn-tabla-ver,

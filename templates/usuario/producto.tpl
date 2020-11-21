@@ -15,6 +15,7 @@
 <article class="container-producto">
     <h1 class="titulo-categoria">{$producto->nombre}</h1>
     <div class="descripcion-producto">
+        <img src="{$producto->imagen}" alt="{$producto->nombre}">
         <h3> {$producto->descripcion}</h3>
         <p>Tamaño: {$producto->tamano} ml.</p>
         <p>Precio: $ {$producto->precio}</p>

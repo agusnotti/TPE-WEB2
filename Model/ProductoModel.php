@@ -32,9 +32,18 @@ class ProductoModel extends Model{
     /**
      * Inserta un producto en la base de datos
      */
-    function insertProducto($nombre,$descripcion,$tamano,$precio,$id_categoria){
-        $sentencia = $this->db->prepare("INSERT INTO producto(nombre, descripcion, tamano, precio,id_categoria) VALUES(?,?,?,?,?)");
-        $sentencia->execute(array($nombre,$descripcion,$tamano,$precio,$id_categoria));
+    function insertProducto($nombre,$descripcion,$tamano,$precio,$id_categoria,$img = null){        
+        $pathImg = null;
+        if ($img)
+            $pathImg = $this->uploadImage($img);
+        $sentencia = $this->db->prepare("INSERT INTO producto(nombre, descripcion, tamano, precio, id_categoria, imagen) VALUES(?,?,?,?,?,?)");
+        $sentencia->execute(array($nombre,$descripcion,$tamano,$precio,$id_categoria,$pathImg));
+    }
+
+    private function uploadImage($image){
+        $target = 'images/productos/' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
     }
 
     /**
@@ -48,8 +57,11 @@ class ProductoModel extends Model{
     /**
      * Modifica un producto de la base de datos
      */
-    function updateProducto($id_producto, $nombre, $descripcion, $tamano, $precio, $id_categoria){
-        $sentencia = $this->db->prepare('UPDATE producto SET nombre=?, descripcion=?, tamano=?, precio=?, id_categoria=? WHERE id=?');
-        $sentencia->execute(array($nombre, $descripcion, $tamano, doubleval($precio), $id_categoria, $id_producto));
+    function updateProducto($id_producto, $nombre, $descripcion, $tamano, $precio, $id_categoria, $img = null){
+        $pathImg = null;
+        if ($img)
+            $pathImg = $this->uploadImage($img);
+        $sentencia = $this->db->prepare('UPDATE producto SET nombre=?, descripcion=?, tamano=?, precio=?, id_categoria=?, imagen=? WHERE id=?');
+        $sentencia->execute(array($nombre, $descripcion, $tamano, doubleval($precio), $id_categoria, $pathImg, $id_producto));
     }
 }
