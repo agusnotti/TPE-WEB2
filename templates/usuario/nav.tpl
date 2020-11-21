@@ -18,7 +18,12 @@
                 </li>
                 <li>
                     {if $isUserLogged}
-                        <a href="logout"><i class="fas fa-sign-out-alt"></i></a>
+                        {if $isAdmin}
+                            <a href="administrador"><i class="fas fa-user"></i></a>
+                            <a href="logout"><i class="fas fa-sign-out-alt"></i></a>
+                        {else}
+                            <a href="logout"><i class="fas fa-sign-out-alt"></i></a>
+                        {/if}
                     {else}
                         <a href="login"><i class="fas fa-user"></i></a>
                     {/if}

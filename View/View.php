@@ -17,12 +17,13 @@ class View{
     }
 
     // ### HOME
-    function showHome($categorias, $productos, $isUserLogged){
+    function showHome($categorias, $productos, $isUserLogged, $isAdmin){
         //asigno variables para mostrar
         $this->smarty->assign('tituloHome', "Conoce nuestro productos");
         $this->smarty->assign('categorias', $categorias);
         $this->smarty->assign('productos', $productos);
         $this->smarty->assign('isUserLogged', $isUserLogged);
+        $this->smarty->assign('isAdmin', $isAdmin);
 
         //  muestro template
         $this->smarty->display('./templates/usuario/home.tpl');

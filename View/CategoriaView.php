@@ -4,7 +4,7 @@ require_once "./View/View.php";
 class CategoriaView extends View{
 
 
-    function showCategoria($productos, $categorias, $categoria, $isUserLogged){
+    function showCategoria($productos, $categorias, $categoria, $isUserLogged, $isAdmin){
         
         /**
          * asigno variables para mostrar
@@ -13,6 +13,7 @@ class CategoriaView extends View{
         $this->smarty->assign('categoria', $categoria);
         $this->smarty->assign('productos', $productos);
         $this->smarty->assign('isUserLogged', $isUserLogged);
+        $this->smarty->assign('isAdmin', $isAdmin);
 
         /**
          * mostrar template

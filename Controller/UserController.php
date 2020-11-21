@@ -13,6 +13,7 @@ class UserController extends LoginController{
         $productos=$this->productoModel->getProductos();
         $categorias = $this->categoriaModel->getCategorias();
         $isUserLogged = $this->isLogged();
-        $this->view->showHome($categorias, $productos, $isUserLogged);
+        $isAdmin = $this->isAdmin();
+        $this->view->showHome($categorias, $productos, $isUserLogged, $isAdmin);
     }
 }

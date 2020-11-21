@@ -15,7 +15,8 @@ class CategoriaController extends UserController{
         $categoria = $this->categoriaModel->getCategoriaByNombre($nombre);
         $categorias = $this->categoriaModel->getCategorias();
         $isUserLogged = $this->isLogged();
-        $this->categoriaView->showCategoria($productos, $categorias, $categoria, $isUserLogged);
+        $isAdmin = $this->isAdmin();
+        $this->categoriaView->showCategoria($productos, $categorias, $categoria, $isUserLogged, $isAdmin);
     }
 
     /**

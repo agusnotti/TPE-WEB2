@@ -15,7 +15,8 @@ class ProductoController extends UserController{
         $producto = $this->productoModel->getProductoById($productoID);
         $categorias = $this->categoriaModel->getCategorias();
         $isUserLogged = $this->isLogged();
-        $this->productoView->showProducto($categorias, $producto, $categoria, $isUserLogged);
+        $isAdmin = $this->isAdmin();
+        $this->productoView->showProducto($categorias, $producto, $categoria, $isUserLogged, $isAdmin);
     }
 
     /**

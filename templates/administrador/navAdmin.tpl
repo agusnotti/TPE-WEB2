@@ -6,9 +6,10 @@
                     {if isset($isAdminProducto) || isset($isAdminCategoria) || isset($isAdminUsusario)}
                         <a href="administrador">
                     {else}
-                    <a href="home">
+                        <a href="home">
                     {/if}
-                    <i class="fas fa-long-arrow-alt-left"></i></a></i>
+                            <i class="fas fa-long-arrow-alt-left"></i>
+                        </a>
                 </li>
             </ul>
         </div>
