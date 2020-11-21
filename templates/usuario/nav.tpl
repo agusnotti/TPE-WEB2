@@ -16,7 +16,13 @@
                 <li class="input-busqueda">
                     <i class="fas fa-search"></i><input type="search" placeholder="Buscar">
                 </li>
-                <li><a href="login"><i class="fas fa-user"></a></i></li>
+                <li>
+                    {if $isUserLogged}
+                        <a href="logout"><i class="fas fa-sign-out-alt"></i></a>
+                    {else}
+                        <a href="login"><i class="fas fa-user"></i></a>
+                    {/if}
+                </li>
             </ul>
         </nav>
     </header>

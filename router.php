@@ -2,10 +2,11 @@
     require_once 'Model/Model.php';
     require_once 'View/View.php';
     require_once 'Controller/Controller.php';
+    require_once 'Controller/LoginController.php';
+    require_once 'Controller/UserController.php';
     require_once 'Controller/CategoriaController.php';
     require_once 'Controller/ProductoController.php';
     require_once 'Controller/AdministradorController.php';
-    require_once 'Controller/LoginController.php';
     require_once 'RouterClass.php';
     
     // CONSTANTES PARA RUTEO
@@ -15,7 +16,7 @@
     $r = new Router();
 
     // rutas
-    $r->addRoute("home", "GET", "Controller", "Home");
+    $r->addRoute("home", "GET", "UserController", "Home");
     $r->addRoute("categoria/:nombreCategoria", "GET", "CategoriaController", "Categoria");
     $r->addRoute("categoria/:nombreCategoria/producto/:ID", "GET", "ProductoController", "Producto");
 
@@ -61,7 +62,7 @@
 
 
     //Ruta por defecto.
-    $r->setDefaultRoute("Controller", "Home");
+    $r->setDefaultRoute("UserController", "Home");
 
     //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

@@ -1,8 +1,10 @@
 <?php
 
-class ProductoController extends Controller{
+class ProductoController extends UserController{
 
-
+    function __construct(){
+        parent::__construct();      
+    }
     /**
      * Obtiene los datos necesarios para visualizar el detalle del producto
      */
@@ -12,7 +14,8 @@ class ProductoController extends Controller{
         $categoria = $this->categoriaModel->getCategoriaByNombre($nombre);
         $producto = $this->productoModel->getProductoById($productoID);
         $categorias = $this->categoriaModel->getCategorias();
-        $this->productoView->showProducto($categorias, $producto, $categoria);
+        $isUserLogged = $this->isLogged();
+        $this->productoView->showProducto($categorias, $producto, $categoria, $isUserLogged);
     }
 
     /**

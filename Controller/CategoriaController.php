@@ -1,9 +1,11 @@
 <?php
 
 
-class CategoriaController extends Controller{
+class CategoriaController extends UserController{
    
-
+    function __construct(){
+        parent::__construct();      
+    }
     /**
      * Obtiene los datos necesarios para visualizar la tabla de productos por categoria
      */
@@ -12,7 +14,8 @@ class CategoriaController extends Controller{
         $productos=$this->productoModel->getProductosByCategoria($nombre);
         $categoria = $this->categoriaModel->getCategoriaByNombre($nombre);
         $categorias = $this->categoriaModel->getCategorias();
-        $this->categoriaView->showCategoria($productos, $categorias, $categoria);
+        $isUserLogged = $this->isLogged();
+        $this->categoriaView->showCategoria($productos, $categorias, $categoria, $isUserLogged);
     }
 
     /**
