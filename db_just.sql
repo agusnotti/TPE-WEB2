@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
 -- Tiempo de generación: 23-11-2020 a las 19:33:33
+=======
+-- Tiempo de generación: 23-11-2020 a las 15:35:39
+>>>>>>> b539ef0ebaabedb4fca0c8b6c5ce458c6c7bec9a
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -44,8 +48,12 @@ INSERT INTO `categoria` (`id`, `nombre`, `imagen`) VALUES
 (5, 'Cuerpo', 'images/categorias/Cuerpo.png'),
 (12, 'Labios', 'images/categorias/Labios.png'),
 (13, 'Piernas', 'images/categorias/Piernas.png'),
+<<<<<<< HEAD
 (23, 'Cabello', 'images/categorias/5fb978202f739.jpg'),
 (24, 'test', 'images/categorias/5fbbd71686d95.jpg');
+=======
+(23, 'Cabello', 'images/categorias/5fb978202f739.jpg');
+>>>>>>> b539ef0ebaabedb4fca0c8b6c5ce458c6c7bec9a
 
 -- --------------------------------------------------------
 
@@ -117,18 +125,29 @@ CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
+<<<<<<< HEAD
   `permiso` tinyint(1) NOT NULL,
   `nombre` varchar(255) NOT NULL
+=======
+  `permiso` tinyint(1) NOT NULL
+>>>>>>> b539ef0ebaabedb4fca0c8b6c5ce458c6c7bec9a
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
+<<<<<<< HEAD
 INSERT INTO `usuario` (`id`, `email`, `password`, `permiso`, `nombre`) VALUES
 (1, 'admin@admin.com', '$2y$10$1jhHiVoMM04c02wBpo4Mz.ezj5w41Pw48W4tvDXsTDwdxOjVqbmfC', 1, 'Administrador'),
 (5, 'agus@gmail.com', '$2y$10$V6.pv3aBJuTyUNQAkLuZO.lh/RPEtojvQqP2URdzzD5sNEZJ7bYyW', 1, 'Agustina Notti'),
 (6, 'fede@fede.com', '$2y$10$lU158IXDGfXMQvuQke8S1.fR.Rj9P1uObFmfls3Wy37/Vg5j0KAiW', 0, 'Federico Aceto');
+=======
+INSERT INTO `usuario` (`id`, `email`, `password`, `permiso`) VALUES
+(1, 'admin@admin.com', '$2y$10$1jhHiVoMM04c02wBpo4Mz.ezj5w41Pw48W4tvDXsTDwdxOjVqbmfC', 1),
+(5, 'agus@gmail.com', '$2y$10$V6.pv3aBJuTyUNQAkLuZO.lh/RPEtojvQqP2URdzzD5sNEZJ7bYyW', 1),
+(6, 'fede@fede.com', '$2y$10$lU158IXDGfXMQvuQke8S1.fR.Rj9P1uObFmfls3Wy37/Vg5j0KAiW', 0);
+>>>>>>> b539ef0ebaabedb4fca0c8b6c5ce458c6c7bec9a
 
 --
 -- Índices para tablas volcadas
@@ -169,7 +188,11 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+>>>>>>> b539ef0ebaabedb4fca0c8b6c5ce458c6c7bec9a
 
 --
 -- AUTO_INCREMENT de la tabla `comentario`
