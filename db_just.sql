@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2020 a las 02:11:49
+-- Tiempo de generación: 23-11-2020 a las 19:33:33
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -29,20 +29,45 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL
+  `nombre` varchar(255) NOT NULL,
+  `imagen` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`id`, `nombre`) VALUES
-(1, 'Aromaterapia'),
-(2, 'Manos'),
-(4, 'Rostro'),
-(5, 'Cuerpo'),
-(12, 'Labios'),
-(13, 'Piernas');
+INSERT INTO `categoria` (`id`, `nombre`, `imagen`) VALUES
+(1, 'Aromaterapia', 'images/categorias/Aromaterapia.png'),
+(2, 'Manos', 'images/categorias/Manos.png'),
+(4, 'Rostro', 'images/categorias/Rostro.png'),
+(5, 'Cuerpo', 'images/categorias/Cuerpo.png'),
+(12, 'Labios', 'images/categorias/Labios.png'),
+(13, 'Piernas', 'images/categorias/Piernas.png'),
+(23, 'Cabello', 'images/categorias/5fb978202f739.jpg'),
+(24, 'test', 'images/categorias/5fbbd71686d95.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id` int(11) NOT NULL,
+  `descripcion` text NOT NULL,
+  `puntaje` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id`, `descripcion`, `puntaje`, `id_producto`, `id_usuario`) VALUES
+(1, 'hola', 4, 13, 1),
+(2, 'chau', 3, 15, 1);
 
 -- --------------------------------------------------------
 
@@ -56,29 +81,31 @@ CREATE TABLE `producto` (
   `descripcion` varchar(255) NOT NULL,
   `tamano` int(11) NOT NULL,
   `precio` double NOT NULL,
-  `id_categoria` int(11) NOT NULL
+  `id_categoria` int(11) NOT NULL,
+  `imagen` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `tamano`, `precio`, `id_categoria`) VALUES
-(13, 'Aceite Esencial de Bergamota', 'Gotas de Felicidad. ', 10, 250, 1),
-(14, 'Aceite Esencial de Limón', 'Inspiración.', 10, 500, 1),
-(15, 'Aceite Esencial de Naranja', 'Anti-conflicto.', 10, 200, 1),
-(16, 'Crema de Malva para el Rostro', 'Confort extra para pieles sensibles.', 50, 1000, 4),
-(30, 'Desmaquillante Micelar Vital Just', 'Desmaquillante sin enjuague y a base de agua', 150, 400, 4),
-(31, 'Mascarilla Purificante de Moambe Amarillo', 'Cuidado anti-acné. Piel limpia y fresca todos los días.', 50, 500, 4),
-(32, 'Crema de Manzanilla para Manos', 'Protección y rejuvenecimiento', 100, 700, 2),
-(33, 'Hand Gel - Gel para manos con Naranja y Flores de Tilo', 'Crema protectora que concentra las propiedades reconfortantes y relajantes de la manzanilla.', 50, 800, 2),
-(34, 'Crema para Labios de Caléndula', 'Cuidado Labial', 50, 400, 12),
-(35, 'Crema para el Contorno de Labios', 'con Edelweiss y Alga de la Nieve', 50, 300, 12),
-(36, 'Pedibalm - Loción para Piernas', 'Reconforta las piernas cansadas', 150, 500, 13),
-(37, 'Bálsamo - Loción Corporal con Árnica y Hamamelis', 'Alivio instantáneo siempre a mano', 400, 1000, 5),
-(38, 'Crema de Tea Tree, Manuca y Rosalina', 'Regenera', 150, 500, 5),
-(39, 'Loción Cremosa Corporal de Almendras', 'Confort para tu piel seca y desnutrida', 250, 2000, 5),
-(40, 'Sun Care - Protector Solar FPS 25', 'Protege', 150, 400, 5);
+INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `tamano`, `precio`, `id_categoria`, `imagen`) VALUES
+(13, 'Aceite Esencial de Bergamota', 'Gotas de Felicidad. ', 100, 2500, 1, ''),
+(14, 'Aceite Esencial de Limón', 'Inspiración.', 10, 500, 1, ''),
+(15, 'Aceite Esencial de Naranja', 'Anti-conflicto.', 10, 200, 1, ''),
+(16, 'Crema de Malva para el Rostro', 'Confort extra para pieles sensibles.', 50, 100, 4, ''),
+(30, 'Desmaquillante Micelar Vital Just', 'Desmaquillante sin enjuague y a base de agua', 150, 400, 4, ''),
+(31, 'Mascarilla Purificante de Moambe Amarillo', 'Cuidado anti-acné. Piel limpia y fresca todos los días.', 50, 500, 4, ''),
+(32, 'Crema de Manzanilla para Manos', 'Protección y rejuvenecimiento', 100, 700, 2, ''),
+(33, 'Hand Gel - Gel para manos con Naranja y Flores de Tilo', 'Crema protectora que concentra las propiedades reconfortantes y relajantes de la manzanilla.', 50, 800, 2, ''),
+(34, 'Crema para Labios de Caléndula', 'Cuidado Labial', 50, 400, 12, ''),
+(35, 'Crema para el Contorno de Labios', 'con Edelweiss y Alga de la Nieve', 50, 300, 12, ''),
+(36, 'Pedibalm - Loción para Piernas', 'Reconforta las piernas cansadas', 150, 500, 13, ''),
+(37, 'Bálsamo - Loción Corporal con Árnica y Hamamelis', 'Alivio instantáneo siempre a mano', 400, 1000, 5, ''),
+(38, 'Crema de Tea Tree, Manuca y Rosalina', 'Regenera', 150, 500, 5, ''),
+(39, 'Loción Cremosa Corporal de Almendras', 'Confort para tu piel seca y desnutrida', 250, 2000, 5, ''),
+(40, 'Sun Care - Protector Solar FPS 25', 'Protege', 150, 400, 5, ''),
+(47, 'gato', 'asdsa', 40, 400, 5, 'images/productos/5fb978a13e98a.jpg');
 
 -- --------------------------------------------------------
 
@@ -89,15 +116,19 @@ INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `tamano`, `precio`, `id_c
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `permiso` tinyint(1) NOT NULL,
+  `nombre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `email`, `password`) VALUES
-(1, 'admin@admin.com', '$2y$10$enp6enczpu04ta6eUk6nZe8l0N78kUeluiKt9ECXiZ2CDAXr7rsLS');
+INSERT INTO `usuario` (`id`, `email`, `password`, `permiso`, `nombre`) VALUES
+(1, 'admin@admin.com', '$2y$10$1jhHiVoMM04c02wBpo4Mz.ezj5w41Pw48W4tvDXsTDwdxOjVqbmfC', 1, 'Administrador'),
+(5, 'agus@gmail.com', '$2y$10$V6.pv3aBJuTyUNQAkLuZO.lh/RPEtojvQqP2URdzzD5sNEZJ7bYyW', 1, 'Agustina Notti'),
+(6, 'fede@fede.com', '$2y$10$lU158IXDGfXMQvuQke8S1.fR.Rj9P1uObFmfls3Wy37/Vg5j0KAiW', 0, 'Federico Aceto');
 
 --
 -- Índices para tablas volcadas
@@ -108,6 +139,14 @@ INSERT INTO `usuario` (`id`, `email`, `password`) VALUES
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_producto` (`id_producto`,`id_usuario`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `producto`
@@ -130,23 +169,36 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`),
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
 
 --
 -- Filtros para la tabla `producto`

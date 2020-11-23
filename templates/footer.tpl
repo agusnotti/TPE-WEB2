@@ -13,6 +13,7 @@
     {if isset($isLogged)}
         <script src="./js/admin.js"></script>
     {/if}
+
 </body>
 
 </html>

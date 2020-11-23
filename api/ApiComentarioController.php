@@ -23,12 +23,9 @@ class ApiComentarioController{
         $id = $params[':ID'];
         if(isset($params[':ID'])){
             $comentarios = $this->model->getComentariosById($id);
-            
-            if(!empty($comentarios)){
+
                 $this->view->response($comentarios, 200);
-            } else {
-                $this->view->response("No existen comentarios para el id = $id", 404);
-            }
+                //SI NO HAY COMENTARIOS
         } else {
             $this->view->response("No estaba seteado el id", 500);
         }

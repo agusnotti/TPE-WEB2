@@ -6,7 +6,7 @@ class ComentarioModel extends Model{
 
 
     function getComentariosById($id_producto){
-        $sentencia = $this->db->prepare('SELECT * FROM comentario WHERE id_producto =?');
+        $sentencia = $this->db->prepare('SELECT comentario.*,usuario.nombre as nombre_usuario FROM comentario INNER JOIN usuario ON comentario.id_usuario=usuario.id WHERE id_producto =?');
         $sentencia->execute(array($id_producto));
 
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
