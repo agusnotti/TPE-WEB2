@@ -59,7 +59,7 @@
     <input id="js-hidden-username" type="hidden" value="{$userId}">
     <input id="js-hidden-isadmin" type="hidden" value="{$isAdmin}">
     <div class="form-group row d-flex justify-content-center w-100 ">
-        <button class="btn btn-cyan btn-sm row flex-shrink-1 w-10 row justify-content-center" type="submit" id="js-add-comment">Enviar</button>
+        <button class="btn btn-cyan btn-sm row flex-shrink-1 w-10 row justify-content-center" id="js-add-comment">Enviar</button>
     </div>
     {/if}
 </form>

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         getComment(commentBox[0].id);
         console.log(document.getElementById("js-hidden-username").value);
 
-        document.getElementById("js-add-comment").addEventListener("click",function (){
+        document.getElementById("js-add-comment").addEventListener("click",function (event){
             let comment={
                 "descripcion": document.getElementById("js-comment-textarea").value,
                 "puntaje": document.getElementById("js-select").value ,
@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "id_usuario": document.getElementById("js-hidden-username").value
             }
             postComment(comment);
+            getComment(commentBox[0].id);
         })
 
     }
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
             button3.innerHTML = "Delete";
             button3.addEventListener("click", function (){
                 deleteComment(div1.name);
-                location.reload();
+                render(commentBox[0].id);
             });
 
             commentBox[0].appendChild(div1);
