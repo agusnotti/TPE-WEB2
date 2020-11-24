@@ -14,9 +14,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
+    function postComment(comment){
+        fetch('api/producto',{
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(comment)
+        })
+            .then(response => {
+                if(response.ok){
+                    console.log("ERROR AL AGREGAR");
+                }
+            })
+            .catch(error => console.log(error));
+    }
+
     function loadProduct() {
         let commentBox = document.getElementsByClassName("comment-widgets");
         getComment(commentBox[0].id);
+        console.log(document.getElementById("js-hidden-username").value);
+
+        document.getElementById("js-add-comment").addEventListener("click",function (){
+            let comment={
+                "descripcion": document.getElementById("js-comment-textarea").value,
+                "puntaje": document.getElementById("js-select").value ,
+                "id_producto": commentBox[0].id,
+                "id_usuario": document.getElementById("js-hidden-username").value
+            }
+            postComment(comment);
+        })
 
     }
 
@@ -32,12 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function render(comments) {
 
-
         let commentBox = document.getElementsByClassName("comment-widgets");
 
-
         for (let comment of comments) {
-
 
             let div1 = document.createElement("div");
             div1.classList.add("d-flex");

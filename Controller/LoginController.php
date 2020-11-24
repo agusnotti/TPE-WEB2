@@ -44,6 +44,7 @@ class LoginController extends Controller{
                 if(password_verify($pass, $userFromDB->password)){
                     session_start();
                     $_SESSION['EMAIL'] = $userFromDB->email;
+                    $_SESSION['ID']= $userFromDB->id;
 
                     header("Location: " . BASE_URL . "administrador"); 
                     
@@ -75,6 +76,7 @@ class LoginController extends Controller{
 
                 session_start();
                 $_SESSION['EMAIL'] = $user;
+                $_SESSION['ID']= $userFromDB->id;
 
                 header("Location: " . BASE_URL . "home"); 
                 
@@ -142,6 +144,14 @@ class LoginController extends Controller{
     function getLoggedUsername(){
         if (isset($_SESSION['EMAIL'])) {
             return $_SESSION['EMAIL'];
+        } else {
+            return null;
+        }
+    }
+
+    function getLoggedUserId(){
+        if (isset($_SESSION['ID'])) {
+            return $_SESSION['ID'];
         } else {
             return null;
         }

@@ -4,7 +4,7 @@
 //NO SE ESTA USANDO
 class ProductoView extends View{
 
-    function showProducto($categorias, $producto, $categoria, $isUserLogged, $isAdmin){    
+    function showProducto($categorias, $producto, $categoria, $isUserLogged, $isAdmin,$id){
         /**
          * asigno variables para mostrar
          */
@@ -13,6 +13,7 @@ class ProductoView extends View{
         $this->smarty->assign('categoria', $categoria);
         $this->smarty->assign('isUserLogged', $isUserLogged);
         $this->smarty->assign('isAdmin', $isAdmin);
+        $this->smarty->assign('userId',$id);
 
         
         /**

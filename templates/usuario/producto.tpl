@@ -36,6 +36,33 @@
     </div>
 </div>
 
+<form>
+    <div class="form-group row d-flex justify-content-center w-100 ">
+        <h6 class="row d-flex justify-content-center w-100" for="exampleFormControlTextarea1">Dejá tu comentario:</h6>
+        <textarea class="form-control row   w-75" id="js-comment-textarea" rows="3"></textarea>
+    </div>
+    <div class="form-group row d-flex justify-content-center w-100 ">
+        <h6 class="row d-flex justify-content-center w-100" for="exampleFormControlTextarea1">Calificación:</h6>
+    </div>
+    <div class="form-group row d-flex justify-content-center w-100 ">
+
+    <select id="js-select" class="btn btn-cyan btn-sm row flex-shrink-1 w-10 row justify-content-center">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <input id="js-hidden-username" type="hidden" value="{$userId}">
+    <div class="form-group row d-flex justify-content-center w-100 ">
+        <button class="btn btn-cyan btn-sm row flex-shrink-1 w-10 row justify-content-center" type="submit" id="js-add-comment">Enviar</button>
+    </div>
+
+</form>
+
+
+
 <script src="./js/commentBox.js"></script>
 {include file="./redesSociales.tpl"}
 {include file="../footer.tpl"}
