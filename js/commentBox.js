@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+    let commentBox = document.getElementsByClassName("comment-widgets");
+
 
     function getComment(id) {
+
         fetch('api/producto/' + id, {})
             .then(response => {
                 if (!response.ok) {
@@ -9,11 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     return response.json();
                 }
             })
-            .then(json => render(json))
+            .then(json =>{
+                commentBox[0].innerHTML="";
+                render(json);
+            } )
             .catch(error => console.log(error));
 
     }
-
     function postComment(comment){
         fetch('api/producto',{
             method:"POST",
@@ -23,13 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
             body : JSON.stringify(comment)
         })
             .then(response => {
-                if(response.ok){
+                if(!response.ok){
                     console.log("ERROR AL AGREGAR");
                 }
             })
             .catch(error => console.log(error));
-    }
 
+    }
     function deleteComment(id){
         fetch('api/producto/comentario/' + id, {
             method: "DELETE",
@@ -39,14 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
             .catch(error => console.log(error));
-    }
 
+    }
     function loadProduct() {
-        let commentBox = document.getElementsByClassName("comment-widgets");
         getComment(commentBox[0].id);
-        console.log(document.getElementById("js-hidden-username").value);
 
         document.getElementById("js-add-comment").addEventListener("click",function (event){
+            event.preventDefault();
             let comment={
                 "descripcion": document.getElementById("js-comment-textarea").value,
                 "puntaje": document.getElementById("js-select").value ,
@@ -73,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let commentBox = document.getElementsByClassName("comment-widgets");
 
+
         for (let comment of comments) {
 
             let div1 = document.createElement("div");
@@ -81,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
             div1.classList.add("comment-row");
             div1.classList.add("border");
             div1.classList.add("border-primary");
-            div1.name=comment.id;
+            div1.title=comment.id;
 
             let div2 = document.createElement("div");
             div2.classList.add("p-2");
@@ -114,9 +119,10 @@ document.addEventListener('DOMContentLoaded', function () {
             button3.classList.add("btn-danger");
             button3.classList.add("btn-sm");
             button3.innerHTML = "Delete";
-            button3.addEventListener("click", function (){
-                deleteComment(div1.name);
-                render(commentBox[0].id);
+            button3.addEventListener("click", function (event){
+                event.preventDefault();
+                deleteComment(div1.title);
+                getComment(commentBox[0].id);
             });
 
             commentBox[0].appendChild(div1);
@@ -139,3 +145,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 })
+
