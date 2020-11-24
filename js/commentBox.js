@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .then(json =>{
-                commentBox[0].innerHTML="";
                 render(json);
             } )
             .catch(error => console.log(error));
@@ -42,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!response.ok) {
                 console.log("ERROR AL BORRAR");
             }
+        }).then(function (){
+            getComment(commentBox[0].id);
         })
             .catch(error => console.log(error));
 
@@ -75,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function render(comments) {
 
-        let commentBox = document.getElementsByClassName("comment-widgets");
-
+        //let commentBox = document.getElementsByClassName("comment-widgets");
+        commentBox[0].innerHTML="";
 
         for (let comment of comments) {
 
@@ -119,10 +120,8 @@ document.addEventListener('DOMContentLoaded', function () {
             button3.classList.add("btn-danger");
             button3.classList.add("btn-sm");
             button3.innerHTML = "Delete";
-            button3.addEventListener("click", function (event){
-                event.preventDefault();
+            button3.addEventListener("click", function (){
                 deleteComment(div1.title);
-                getComment(commentBox[0].id);
             });
 
             commentBox[0].appendChild(div1);
