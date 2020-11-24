@@ -37,10 +37,12 @@
 </div>
 
 <form>
+    {if $isUserLogged}
     <div class="form-group row d-flex justify-content-center w-100 ">
         <h6 class="row d-flex justify-content-center w-100" for="exampleFormControlTextarea1">Dejá tu comentario:</h6>
         <textarea class="form-control row   w-75" id="js-comment-textarea" rows="3"></textarea>
     </div>
+
     <div class="form-group row d-flex justify-content-center w-100 ">
         <h6 class="row d-flex justify-content-center w-100" for="exampleFormControlTextarea1">Calificación:</h6>
     </div>
@@ -59,7 +61,7 @@
     <div class="form-group row d-flex justify-content-center w-100 ">
         <button class="btn btn-cyan btn-sm row flex-shrink-1 w-10 row justify-content-center" type="submit" id="js-add-comment">Enviar</button>
     </div>
-
+    {/if}
 </form>
 
 
