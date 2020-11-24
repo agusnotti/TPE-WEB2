@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .then(json =>{
+                commentBox[0].innerHTML="";
                 render(json);
             } )
             .catch(error => console.log(error));
@@ -76,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function render(comments) {
 
-        //let commentBox = document.getElementsByClassName("comment-widgets");
-        commentBox[0].innerHTML="";
+       
+
 
         for (let comment of comments) {
 
