@@ -30,6 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.log(error));
     }
 
+    function deleteComment(id){
+        fetch('api/producto/comentario/' + id, {
+            method: "DELETE",
+        }).then(function (response) {
+            if (!response.ok) {
+                console.log("ERROR AL BORRAR");
+            }
+        })
+            .catch(error => console.log(error));
+    }
+
     function loadProduct() {
         let commentBox = document.getElementsByClassName("comment-widgets");
         getComment(commentBox[0].id);
@@ -67,6 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
             div1.classList.add("d-flex");
             div1.classList.add("flex-row");
             div1.classList.add("comment-row");
+            div1.classList.add("border");
+            div1.classList.add("border-primary");
+            div1.name=comment.id;
 
             let div2 = document.createElement("div");
             div2.classList.add("p-2");
@@ -94,21 +108,15 @@ document.addEventListener('DOMContentLoaded', function () {
             span2.innerHTML = stars;
 
 
-            let button1 = document.createElement("button");
-            button1.classList.add("btn");
-            button1.classList.add("btn-cyan");
-            button1.classList.add("btn-sm");
-            button1.innerHTML = "Edit";
-            let button2 = document.createElement("button");
-            button2.classList.add("btn");
-            button2.classList.add("btn-success");
-            button2.classList.add("btn-sm");
-            button2.innerHTML = "Publish";
             let button3 = document.createElement("button");
             button3.classList.add("btn");
             button3.classList.add("btn-danger");
             button3.classList.add("btn-sm");
             button3.innerHTML = "Delete";
+            button3.addEventListener("click", function (){
+                deleteComment(div1.name);
+                location.reload();
+            });
 
             commentBox[0].appendChild(div1);
             div1.appendChild(div2);
@@ -117,9 +125,10 @@ document.addEventListener('DOMContentLoaded', function () {
             div3.appendChild(span);
             div3.appendChild(div4);
             div4.appendChild(span2);
-            div4.appendChild(button1);
-            div4.appendChild(button2);
-            div4.appendChild(button3);
+            if(document.getElementById("js-hidden-isadmin").value == 1){
+                div4.appendChild(button3);
+            }
+
 
 
         }

@@ -24,12 +24,12 @@
 
 
 <div class="row d-flex justify-content-center mt-100 mb-100">
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body text-center">
-                <h4 class="card-title">Latest Comments</h4>
+    <div class="col-lg-6 border border-primary" >
+        <div class="card ">
+            <div class="card-body text-center ">
+                <h4 class="card-title">Ultimos Comentarios</h4>
             </div>
-            <div class="comment-widgets" id="{$producto->id}">
+            <div class="comment-widgets " id="{$producto->id}">
 
             </div>
         </div>
@@ -55,11 +55,13 @@
         </select>
     </div>
     <input id="js-hidden-username" type="hidden" value="{$userId}">
+    <input id="js-hidden-isadmin" type="hidden" value="{$isAdmin}">
     <div class="form-group row d-flex justify-content-center w-100 ">
         <button class="btn btn-cyan btn-sm row flex-shrink-1 w-10 row justify-content-center" type="submit" id="js-add-comment">Enviar</button>
     </div>
 
 </form>
+
 
 
 
