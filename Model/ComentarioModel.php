@@ -15,8 +15,7 @@ class ComentarioModel extends Model{
     function addComentario($comentario, $puntaje, $id_producto, $id_usuario){
         $sentencia = $this->db->prepare("INSERT INTO comentario(descripcion, puntaje, id_producto, id_usuario) VALUES(?,?,?,?)");
         $sentencia->execute(array($comentario, $puntaje, $id_producto, $id_usuario));
-
-        return $sentencia->rowCount();
+        return $this->db->lastInsertId();
     }
 
     function deleteComentarioById($id_comentario){

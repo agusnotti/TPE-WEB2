@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     let commentBox = document.getElementsByClassName("comment-widgets");
-
+    let commentsarray=[];
 
     function getComment(id) {
 
@@ -13,9 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .then(json =>{
-                commentBox[0].innerHTML="";
-                render(json);
-            } )
+                addToLocal(json);
+            } ).then(function (){
+            render(commentsarray);
+        })
             .catch(error => console.log(error));
 
     }
@@ -30,8 +31,22 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => {
                 if(!response.ok){
                     console.log("ERROR AL AGREGAR");
+                }else{
+                    return response.json();
                 }
-            })
+
+            }).then (json=>{
+            let data=[{
+                "descripcion": comment.descripcion,
+                "puntaje": comment.puntaje,
+                "id": json,
+                "nombre_usuario": document.getElementById('js-hidden-username').value
+            }]
+            addToLocal(data);
+
+        }).then(function (){
+            render(commentsarray);
+        })
             .catch(error => console.log(error));
 
     }
@@ -43,7 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("ERROR AL BORRAR");
             }
         }).then(function (){
-            getComment(commentBox[0].id);
+            removeFromLocal(id);
+        }).then(function (){
+            render(commentsarray);
         })
             .catch(error => console.log(error));
 
@@ -57,10 +74,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 "descripcion": document.getElementById("js-comment-textarea").value,
                 "puntaje": document.getElementById("js-select").value ,
                 "id_producto": commentBox[0].id,
-                "id_usuario": document.getElementById("js-hidden-username").value
+                "id_usuario": document.getElementById("js-hidden-userid").value
             }
             postComment(comment);
-            getComment(commentBox[0].id);
         })
 
     }
@@ -73,11 +89,35 @@ document.addEventListener('DOMContentLoaded', function () {
         return stars;
     }
 
+    function addToLocal(json){
+        for(let item of json){
+            let data={
+                "descripcion": item.descripcion,
+                "puntaje": item.puntaje,
+                "id": item.id,
+                "nombre_usuario": item.nombre_usuario
+            }
+
+            commentsarray.push(data);
+        }
+    }
+
+    function removeFromLocal(id){
+        let i=0;
+        while (i<commentsarray.length) {
+            if(commentsarray[i].id == id){
+                commentsarray.splice(i,1);
+            }else{
+                i++;
+            }
+        }
+    }
+
     loadProduct();
 
     function render(comments) {
 
-       
+        commentBox[0].innerHTML="";
 
 
         for (let comment of comments) {
@@ -88,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function () {
             div1.classList.add("comment-row");
             div1.classList.add("border");
             div1.classList.add("border-primary");
-            div1.title=comment.id;
 
             let div2 = document.createElement("div");
             div2.classList.add("p-2");
@@ -122,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
             button3.classList.add("btn-sm");
             button3.innerHTML = "Delete";
             button3.addEventListener("click", function (){
-                deleteComment(div1.title);
+                deleteComment(comment.id);
             });
 
             commentBox[0].appendChild(div1);
