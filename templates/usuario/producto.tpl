@@ -56,14 +56,14 @@
             <option value="5">5</option>
         </select>
     </div>
-    <input id="js-hidden-userid" type="hidden" value="{$userId}">
-    <input id="js-hidden-isadmin" type="hidden" value="{$isAdmin}">
-    <input id="js-hidden-username" type="hidden" value="{$userName}">
     <div class="form-group row d-flex justify-content-center w-100 ">
         <button class="btn btn-cyan btn-sm row flex-shrink-1 w-10 row justify-content-center" id="js-add-comment">Enviar</button>
     </div>
     {/if}
 
+    <input id="js-hidden-userid" type="hidden" value="{$userId}">
+    <input id="js-hidden-isadmin" type="hidden" value="{$isAdmin}">
+    <input id="js-hidden-username" type="hidden" value="{$userName}">
 </form>
 
 
