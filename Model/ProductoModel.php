@@ -5,8 +5,8 @@ class ProductoModel extends Model{
     /**
      * obteniene productos por categoria
      */
-    function getProductosByCategoria($nombreCategoria){
-        $sentencia = $this->db->prepare("SELECT p.*, c.nombre as nombre_categoria FROM producto p INNER JOIN categoria c ON c.id = p.id_categoria WHERE c.nombre=?");
+    function getProductosByCategoria($nombreCategoria, $productoInicial, $productosPorPagina){
+        $sentencia = $this->db->prepare("SELECT p.*, c.nombre as nombre_categoria FROM producto p INNER JOIN categoria c ON c.id = p.id_categoria WHERE c.nombre=? LIMIT $productoInicial, $productosPorPagina");
         $sentencia->execute(array($nombreCategoria));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
@@ -23,10 +23,22 @@ class ProductoModel extends Model{
     /**
      * obtiene todos los productos
      */
-    function getProductos(){
-        $sentencia = $this->db->prepare("SELECT p.*, c.nombre as nombre_categoria FROM producto p INNER JOIN categoria c ON c.id = p.id_categoria");
+    function getProductos($productoInicial, $productosPorPagina){
+        $sentencia = $this->db->prepare("SELECT p.*, c.nombre as nombre_categoria FROM producto p INNER JOIN categoria c ON c.id = p.id_categoria  LIMIT :inicio , :cantidad");
+        $sentencia->bindParam(":inicio", $productoInicial, PDO::PARAM_INT);
+        $sentencia->bindParam(":cantidad", $productosPorPagina, PDO::PARAM_INT);
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function countProductos($id_categoria = null){
+        if(isset($id_categoria)){
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE id_categoria = ?");
+        } else {
+            $sentencia = $this->db->prepare("SELECT * FROM producto");
+        }
+        $sentencia->execute(array($id_categoria));
+        return $sentencia->rowCount();
     }
 
     /**

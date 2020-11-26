@@ -11,12 +11,20 @@ class CategoriaController extends UserController{
      */
     function Categoria($params = null){
         $nombre = $params[':nombreCategoria'];
-        $productos=$this->productoModel->getProductosByCategoria($nombre);
         $categoria = $this->categoriaModel->getCategoriaByNombre($nombre);
+
+        $paginaActual = (!empty($params) && isset($params[':pagina'])) ? $params[':pagina'] : 1;
+        $productosPorPagina = 5;
+        $cantidadProductosDB = $this->productoModel->countProductos($categoria->id);
+        $cantidadPaginas = ceil($cantidadProductosDB/$productosPorPagina);
+        $productoInicial = ($paginaActual-1)*$productosPorPagina;
+
+        $productos=$this->productoModel->getProductosByCategoria($nombre, $productoInicial, $productosPorPagina);
         $categorias = $this->categoriaModel->getCategorias();
         $isUserLogged = $this->isLogged();
         $isAdmin = $this->isAdmin();
-        $this->categoriaView->showCategoria($productos, $categorias, $categoria, $isUserLogged, $isAdmin);
+        $url = 'categoria/'.$nombre.'/';
+        $this->categoriaView->showCategoria($productos, $categorias, $categoria, $isUserLogged, $isAdmin, $cantidadPaginas, $paginaActual, $url);
     }
 
     /**

@@ -16,8 +16,9 @@
     $r = new Router();
 
     // rutas
-    $r->addRoute("home", "GET", "UserController", "Home");
+    $r->addRoute("home/:pagina", "GET", "UserController", "Home");
     $r->addRoute("categoria/:nombreCategoria", "GET", "CategoriaController", "Categoria");
+    $r->addRoute("categoria/:nombreCategoria/:pagina", "GET", "CategoriaController", "Categoria");
     $r->addRoute("categoria/:nombreCategoria/producto/:ID", "GET", "ProductoController", "Producto");
 
     //### LOGIN
@@ -30,6 +31,7 @@
     //### ADMIN
     $r->addRoute("administrador", "GET", "AdministradorController", "Administrador");
     $r->addRoute("administrador/productos", "GET", "AdministradorController", "AdministrarProductos");
+    $r->addRoute("administrador/productos/:pagina", "GET", "AdministradorController", "AdministrarProductos");
     $r->addRoute("administrador/categorias", "GET", "AdministradorController", "AdministrarCategorias");
     $r->addRoute("administrador/usuarios", "GET", "AdministradorController", "AdministrarUsuarios");
     $r->addRoute("administrador/usuarios/habilitar/:ID", "GET", "AdministradorController", "HabilitarPermisos");
