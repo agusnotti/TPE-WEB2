@@ -4,7 +4,9 @@
 
 
 <div class="container-admin-productos">
-    {include file="../tablaProductos.tpl"}
+    <div>
+        {include file="../tablaProductos.tpl"}
+    </div>
     {include file="./formProducto.tpl"}
 </div>
 

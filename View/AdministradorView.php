@@ -11,11 +11,14 @@ class AdministradorView extends View{
     }
 
 
-    function showAdminProductos($categorias, $productos, $isLogged){
+    function showAdminProductos($categorias, $productos, $isLogged, $cantidadPaginas, $paginaActual, $url){
         $this->smarty->assign('isAdminProducto', true);
         $this->smarty->assign('productos', $productos);
         $this->smarty->assign('categorias', $categorias);
         $this->smarty->assign('isLogged', $isLogged);
+        $this->smarty->assign('cantidadPaginas', $cantidadPaginas);
+        $this->smarty->assign('paginaActual', $paginaActual);
+        $this->smarty->assign('url', $url);
         $this->smarty->display('./templates/administrador/adminProductos.tpl');
     }
 

@@ -19,12 +19,20 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
         $this->adminView->showAdminPage();
     }
 
-    function AdministrarProductos(){
+    function AdministrarProductos($params = null){
         $this->checkLoggedIn();
         $isLogged = $this->isLogged();
-        $productos = $this->productoModel->getProductos();
+
+        $paginaActual = (empty($params)) ? 1 : $params[':pagina'];
+        $productosPorPagina = 5;
+        $cantidadProductosDB = $this->productoModel->countProductos();
+        $cantidadPaginas = ceil($cantidadProductosDB/$productosPorPagina);
+        $productoInicial = ($paginaActual-1)*$productosPorPagina;
+        $productos=$this->productoModel->getProductos($productoInicial, $productosPorPagina);
+
         $categorias = $this->categoriaModel->getCategorias();
-        $this->adminView->showAdminProductos($categorias, $productos, $isLogged);
+        $url = 'administrador/productos/';
+        $this->adminView->showAdminProductos($categorias, $productos, $isLogged, $cantidadPaginas, $paginaActual, $url);
     }
 
     function AdministrarCategorias(){
