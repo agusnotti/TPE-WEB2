@@ -40,7 +40,7 @@
     {if $isUserLogged}
     <div class="form-group row d-flex justify-content-center w-100 ">
         <h6 class="row d-flex justify-content-center w-100" for="exampleFormControlTextarea1">Dejá tu comentario:</h6>
-        <textarea class="form-control row   w-50" id="js-comment-textarea" rows="3"></textarea>
+        <textarea class="form-control row   w-50" id="js-comment-textarea" rows="3" required></textarea>
     </div>
 
     <div class="form-group row d-flex justify-content-center w-100 ">
@@ -65,7 +65,11 @@
     <input id="js-hidden-isadmin" type="hidden" value="{$isAdmin}">
     <input id="js-hidden-username" type="hidden" value="{$userName}">
 </form>
-
+<div class="form-group row d-flex justify-content-center w-100 oculto">
+    <div class="oculto w-50 d-flex justify-content-center" role="alert" id="js-message" >
+        <p id="js-message-text" class="oculto">TEXTO</p>
+    </div>
+</div>
 
 
 
