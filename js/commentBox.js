@@ -1,42 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
     let commentBox = document.getElementsByClassName("comment-widgets");
-    let commentsarray=[];
+    let commentsarray = [];
 
     function getComment(id) {
 
         fetch('api/producto/' + id, {})
             .then(response => {
                 if (!response.ok) {
-                    console.log("ERROR");
+                    showError("No se pudieron obtener los comentarios");
                 } else {
                     return response.json();
                 }
             })
-            .then(json =>{
+            .then(json => {
                 addToLocal(json);
-            } ).then(function (){
+            }).then(function () {
             render(commentsarray);
         })
             .catch(error => console.log(error));
 
     }
-    function postComment(comment){
-        fetch('api/producto',{
-            method:"POST",
+
+    function postComment(comment) {
+        fetch('api/producto', {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body : JSON.stringify(comment)
+            body: JSON.stringify(comment)
         })
             .then(response => {
-                if(!response.ok){
-                    console.log("ERROR AL AGREGAR");
-                }else{
+                if (!response.ok) {
+                    showError("ERROR AL AGREGAR");
+                } else {
                     return response.json();
                 }
-
-            }).then (json=>{
-            let data=[{
+            }).then(json => {
+            let data = [{
                 "descripcion": comment.descripcion,
                 "puntaje": comment.puntaje,
                 "id": json,
@@ -44,41 +44,64 @@ document.addEventListener('DOMContentLoaded', function () {
             }]
             addToLocal(data);
 
-        }).then(function (){
+        }).then(function () {
             render(commentsarray);
         })
             .catch(error => console.log(error));
 
     }
-    function deleteComment(id){
+
+    function deleteComment(id) {
         fetch('api/producto/comentario/' + id, {
             method: "DELETE",
         }).then(function (response) {
             if (!response.ok) {
-                console.log("ERROR AL BORRAR");
+                showError("ERROR AL BORRAR");
             }
-        }).then(function (){
+        }).then(function () {
             removeFromLocal(id);
-        }).then(function (){
+        }).then(function () {
             render(commentsarray);
         })
             .catch(error => console.log(error));
 
     }
+
     function loadProduct() {
         getComment(commentBox[0].id);
 
-        document.getElementById("js-add-comment").addEventListener("click",function (event){
+        document.getElementById("js-add-comment").addEventListener("click", function (event) {
             event.preventDefault();
-            let comment={
+            let comment = {
                 "descripcion": document.getElementById("js-comment-textarea").value,
-                "puntaje": document.getElementById("js-select").value ,
+                "puntaje": document.getElementById("js-select").value,
                 "id_producto": commentBox[0].id,
                 "id_usuario": document.getElementById("js-hidden-userid").value
             }
-            postComment(comment);
+
+            if(!comment.descripcion){
+                showError("El campo descripcion está vacio");
+            }else{
+                postComment(comment);
+            }
         })
 
+    }
+
+    function showError(text){
+        document.getElementById("js-message").classList.remove("oculto");
+        document.getElementById("js-message").classList.add("alert");
+        document.getElementById("js-message").classList.add("alert-danger");
+        document.getElementById("js-message-text").classList.remove("oculto");
+        document.getElementById("js-message-text").innerHTML=text;
+        setTimeout(hide,2000);
+    }
+
+    function hide(){
+        document.getElementById("js-message").classList.add("oculto");
+        document.getElementById("js-message").classList.remove("alert");
+        document.getElementById("js-message").classList.remove("alert-danger");
+        document.getElementById("js-message-text").classList.add("oculto");
     }
 
     function calculateStars(puntaje) {
@@ -89,9 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
         return stars;
     }
 
-    function addToLocal(json){
-        for(let item of json){
-            let data={
+    function addToLocal(json) {
+        for (let item of json) {
+            let data = {
                 "descripcion": item.descripcion,
                 "puntaje": item.puntaje,
                 "id": item.id,
@@ -102,12 +125,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function removeFromLocal(id){
-        let i=0;
-        while (i<commentsarray.length) {
-            if(commentsarray[i].id == id){
-                commentsarray.splice(i,1);
-            }else{
+    function removeFromLocal(id) {
+        let i = 0;
+        while (i < commentsarray.length) {
+            if (commentsarray[i].id == id) {
+                commentsarray.splice(i, 1);
+            } else {
                 i++;
             }
         }
@@ -117,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function render(comments) {
 
-        commentBox[0].innerHTML="";
+        commentBox[0].innerHTML = "";
 
 
         for (let comment of comments) {
@@ -160,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
             button3.classList.add("btn-danger");
             button3.classList.add("btn-sm");
             button3.innerHTML = "Delete";
-            button3.addEventListener("click", function (){
+            button3.addEventListener("click", function () {
                 deleteComment(comment.id);
             });
 
@@ -171,15 +194,10 @@ document.addEventListener('DOMContentLoaded', function () {
             div3.appendChild(span);
             div3.appendChild(div4);
             div4.appendChild(span2);
-            if(document.getElementById("js-hidden-isadmin").value == 1){
+            if (document.getElementById("js-hidden-isadmin").value == 1) {
                 div4.appendChild(button3);
             }
-
-
-
         }
-
-
     }
 
 
