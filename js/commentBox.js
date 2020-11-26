@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }else{
                     return response.json();
                 }
-
             }).then (json=>{
             let data=[{
                 "descripcion": comment.descripcion,
