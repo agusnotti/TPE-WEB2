@@ -33,20 +33,28 @@
                 <form action="verificarAdmin" method="post">
             {else}
                 <form action="signIn" method="post">
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-address-book"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="name" name="input_name" required>
+                </div>
             {/if}
             
+                
+
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="username" name="input_user">
+                    <input type="text" class="form-control" placeholder="username" name="input_user" required>
                 </div>
             
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="password" name="input_password">
+                    <input type="password" class="form-control" placeholder="password" name="input_password" required>
                 </div>
             
                 <div class="form-group">

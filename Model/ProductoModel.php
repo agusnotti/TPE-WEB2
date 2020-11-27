@@ -6,8 +6,12 @@ class ProductoModel extends Model{
      * obteniene productos por categoria
      */
     function getProductosByCategoria($nombreCategoria, $productoInicial, $productosPorPagina){
-        $sentencia = $this->db->prepare("SELECT p.*, c.nombre as nombre_categoria FROM producto p INNER JOIN categoria c ON c.id = p.id_categoria WHERE c.nombre=? LIMIT $productoInicial, $productosPorPagina");
-        $sentencia->execute(array($nombreCategoria));
+        $sentencia = $this->db->prepare("SELECT p.*, c.nombre as nombre_categoria FROM producto p 
+        INNER JOIN categoria c ON c.id = p.id_categoria WHERE c.nombre= :nombre_categoria LIMIT :inicio, :cantidad");
+        $sentencia->bindParam(":nombre_categoria", $nombreCategoria,PDO::PARAM_STR);
+        $sentencia->bindParam(":inicio", $productoInicial, PDO::PARAM_INT);
+        $sentencia->bindParam(":cantidad", $productosPorPagina, PDO::PARAM_INT);
+        $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 

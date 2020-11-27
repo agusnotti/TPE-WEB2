@@ -63,17 +63,18 @@ class LoginController extends Controller{
     }
 
     function SignIn(){
+        $name = $_POST['input_name'];
         $user = $_POST['input_user'];
         $pass = $_POST['input_password'];
 
 
-        if (isset($user) && !empty($user) && isset($pass) && !empty($pass)) {
+        if (isset($user) && !empty($user) && isset($pass) && !empty($pass) && isset($name) && !empty($name)) {
             $userFromDB = $this->loginModel->getUser($user);
 
             if (!isset($userFromDB) || !$userFromDB) {
                 $pass = password_hash($pass, PASSWORD_DEFAULT);
 
-                $this->loginModel->addUser($user, $pass);
+                $this->loginModel->addUser($name, $user, $pass);
 
                 session_start();
                 $_SESSION['EMAIL'] = $user;

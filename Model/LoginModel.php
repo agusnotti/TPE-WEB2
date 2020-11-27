@@ -14,9 +14,9 @@ class LoginModel extends Model{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function addUser($username, $password){
-        $sentencia = $this->db->prepare("INSERT INTO usuario(email, password) VALUES(?,?)");
-        $sentencia->execute(array($username, $password));
+    function addUser($name, $username, $password){
+        $sentencia = $this->db->prepare("INSERT INTO usuario(email, password, nombre) VALUES(?,?,?)");
+        $sentencia->execute(array($username, $password, $name));
     }
 
     function modificarPermisos($id_user, $permiso){
