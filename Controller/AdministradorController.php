@@ -66,9 +66,11 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
     }
 
     function DeleteUsuario($params = null){
-        $id = $params[':ID'];
-        $this->loginModel->deleteUsuario($id);
-        header("Location: " . BASE_URL . "administrador/usuarios");
+        if(isset($params[':ID'])){
+            $id = $params[':ID'];
+            $this->loginModel->deleteUsuario($id);
+            header("Location: " . BASE_URL . "administrador/usuarios");
+        }
     }
 
 

@@ -33,10 +33,9 @@ class LoginController extends Controller{
     function Verificar(){
         //admin@admin.com
         //pass: 123456
-        $user = $_POST['input_user'];
-        $pass = $_POST['input_password'];
-
-        if (isset($user)) {
+        if (isset($_POST['input_user']) && isset($_POST['input_password'])) {
+            $user = $_POST['input_user'];
+            $pass = $_POST['input_password'];
             $userFromDB = $this->loginModel->getUser($user);
 
             if (isset($userFromDB) && $userFromDB) {
@@ -63,12 +62,10 @@ class LoginController extends Controller{
     }
 
     function SignIn(){
-        $name = $_POST['input_name'];
-        $user = $_POST['input_user'];
-        $pass = $_POST['input_password'];
-
-
-        if (isset($user) && !empty($user) && isset($pass) && !empty($pass) && isset($name) && !empty($name)) {
+        if (isset($_POST['input_user']) && !empty($_POST['input_user']) && isset($_POST['input_password']) && !empty($_POST['input_password']) && isset($_POST['input_name']) && !empty($_POST['input_name'])) {
+            $name = $_POST['input_name'];
+            $user = $_POST['input_user'];
+            $pass = $_POST['input_password'];
             $userFromDB = $this->loginModel->getUser($user);
 
             if (!isset($userFromDB) || !$userFromDB) {

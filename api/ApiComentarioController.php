@@ -20,8 +20,8 @@ class ApiComentarioController{
     }
 
     public function ObtenerComentariosById($params = null){
-        $id = $params[':ID'];
         if(isset($params[':ID'])){
+            $id = $params[':ID'];
             $comentarios = $this->model->getComentariosById($id);
 
                 $this->view->response($comentarios, 200);
@@ -42,8 +42,8 @@ class ApiComentarioController{
     }
 
     public function BorrarComentarioById($params = null){
-        $id = $params[':ID'];
         if(isset($params[':ID'])){
+            $id = $params[':ID'];
             $comentarios = $this->model->deleteComentarioById($id);
             
             if(!empty($comentarios)){
