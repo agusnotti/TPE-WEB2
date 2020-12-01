@@ -24,10 +24,12 @@ class ProductoController extends UserController{
                     $id= $this->getLoggedUserId();
                     $userName= $this->getLoggedUser();
                     $this->productoView->showProducto($categorias, $producto, $categoria, $isUserLogged, $isAdmin,$id,$userName);
+                }else{
+                    $this->view->ShowLocation('home');
                 }
+            }else{
+                $this->view->ShowLocation('home');
             }
-
-            $this->view->ShowLocation('home');
         } else {
             $this->view->ShowLocation('home');
         }
@@ -51,7 +53,7 @@ class ProductoController extends UserController{
             }
         }
 
-        $this->productoView->ShowLocation('administrador/productos');
+        $this->view->ShowLocation('administrador/productos');
     }    
 
     /**
@@ -62,7 +64,7 @@ class ProductoController extends UserController{
             $id = $id_producto[':ID'];
             $this->productoModel->deleteProducto($id);
         }
-        $this->productoView->ShowLocation('administrador/productos');
+        $this->view->ShowLocation('administrador/productos');
     }
 
     /**
@@ -83,6 +85,6 @@ class ProductoController extends UserController{
             }
         }
 
-        $this->productoView->ShowLocation('administrador/productos');
+        $this->view->ShowLocation('administrador/productos');
     }
 }
