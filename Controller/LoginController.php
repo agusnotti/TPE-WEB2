@@ -5,8 +5,8 @@ require_once "./View/AdministradorView.php";
 
 class LoginController extends Controller{
 
-    protected $loginView;
-    protected $loginModel;
+    private $loginView;
+    private $loginModel;
 
     function __construct(){
         $this->loginView = new LoginView();

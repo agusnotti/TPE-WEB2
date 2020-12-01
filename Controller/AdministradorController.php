@@ -2,11 +2,15 @@
 require_once "./View/AdministradorView.php";
 require_once "./Controller/LoginController.php";
 
-class AdministradorController extends LoginController{ //extiendo de LoginController donde esta la funcion para chequear si el usuario esta logueado
+class AdministradorController extends Controller {
 
-    protected $adminView;
+    private $adminView;
+    private $loginController;
+    private $loginModel;
 
     function __construct(){
+        $this->loginModel= new LoginModel();
+        $this->loginController= new LoginController();
         $this->adminView = new AdministradorView();
         parent::__construct();      
     }
@@ -15,13 +19,13 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
      * Muestra vista de administrador
      */
     function Administrador(){
-        $this->checkLoggedIn();
+        $this->loginController->checkLoggedIn();
         $this->adminView->showAdminPage();
     }
 
     function AdministrarProductos($params = null){
-        $this->checkLoggedIn();
-        $isLogged = $this->isLogged();
+        $this->loginController->checkLoggedIn();
+        $isLogged = $this->loginController->isLogged();
 
         $paginaActual = (empty($params)) ? 1 : $params[':pagina'];
         $productosPorPagina = 5;
@@ -36,16 +40,16 @@ class AdministradorController extends LoginController{ //extiendo de LoginContro
     }
 
     function AdministrarCategorias(){
-        $this->checkLoggedIn();
-        $isLogged = $this->isLogged();
+        $this->loginController->checkLoggedIn();
+        $isLogged = $this->loginController->isLogged();
         $categorias = $this->categoriaModel->getCategorias();
         $this->adminView->showAdminCategorias($categorias, $isLogged);
     }
 
     function AdministrarUsuarios(){
-        $this->checkLoggedIn();
-        $isLogged = $this->isLogged();
-        $username = $this->getLoggedUsername();
+        $this->loginController->checkLoggedIn();
+        $isLogged = $this->loginController->isLogged();
+        $username = $this->loginController->getLoggedUsername();
         $usuarios = $this->loginModel->getUsuarios($username);
         $this->adminView->showAdminUsuarios($usuarios, $isLogged);
     }

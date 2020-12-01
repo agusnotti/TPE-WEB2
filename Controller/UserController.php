@@ -1,15 +1,17 @@
 <?php
 
-class UserController extends LoginController{
+class UserController extends Controller {
 
+    private  $loginController;
     function __construct(){
+        $this->loginController= new LoginController();
         parent::__construct();      
     }
     /**
      * Obtiene los datos necesarios para mostrar en el home las diferentes categorias 
      * y la tabla con la cantidad total de productos
      */
-    function Home($params = null){  
+    function Home($params = null){
         $paginaActual = (empty($params)) ? 1 : $params[':pagina'];
         $productosPorPagina = 5;
         $cantidadProductosDB = $this->productoModel->countProductos();
@@ -17,8 +19,8 @@ class UserController extends LoginController{
         $productoInicial = ($paginaActual-1)*$productosPorPagina;
         $productos=$this->productoModel->getProductos($productoInicial, $productosPorPagina);
         $categorias = $this->categoriaModel->getCategorias();
-        $isUserLogged = $this->isLogged();
-        $isAdmin = $this->isAdmin();
+        $isUserLogged = $this->loginController->isLogged();
+        $isAdmin = $this->loginController->isAdmin();
         $url = 'home/';
 
         
