@@ -3,10 +3,10 @@
 
 class CategoriaController extends Controller
 {
-    private $loginController;
+    private $helper;
     function __construct()
     {
-        $this->loginController= new LoginController();
+        $this->helper= new Helper();
         parent::__construct();
     }
 
@@ -28,8 +28,8 @@ class CategoriaController extends Controller
 
                 $productos = $this->productoModel->getProductosByCategoria($nombre, $productoInicial, $productosPorPagina);
                 $categorias = $this->categoriaModel->getCategorias();
-                $isUserLogged = $this->loginController->isLogged();
-                $isAdmin = $this->loginController->isAdmin();
+                $isUserLogged = $this->helper->isLogged();
+                $isAdmin = $this->helper->isAdmin();
                 $url = 'categoria/' . $nombre . '/';
                 $this->categoriaView->showCategoria($productos, $categorias, $categoria, $isUserLogged, $isAdmin, $cantidadPaginas, $paginaActual, $url);
 

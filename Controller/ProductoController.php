@@ -1,9 +1,9 @@
 <?php
 
 class ProductoController extends Controller {
-    private $loginController;
+    private $helper;
     function __construct(){
-        $this->loginController= new LoginController();
+        $this->helper= new Helper();
         parent::__construct();      
     }
     /**
@@ -20,10 +20,10 @@ class ProductoController extends Controller {
 
                 if($producto && isset($producto->id)){
                     $categorias = $this->categoriaModel->getCategorias();
-                    $isUserLogged = $this->loginController->isLogged();
-                    $isAdmin = $this->loginController->isAdmin();
-                    $id= $this->loginController->getLoggedUserId();
-                    $userName= $this->loginController->getLoggedUser();
+                    $isUserLogged = $this->helper->isLogged();
+                    $isAdmin = $this->helper->isAdmin();
+                    $id= $this->helper->getLoggedUserId();
+                    $userName= $this->helper->getLoggedUser();
                     $this->productoView->showProducto($categorias, $producto, $categoria, $isUserLogged, $isAdmin,$id,$userName);
                 }else{
                     $this->view->ShowLocation('home');
