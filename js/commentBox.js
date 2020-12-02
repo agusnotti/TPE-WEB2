@@ -1,27 +1,28 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let commentBox = document.getElementsByClassName("comment-widgets");
-    let commentsarray = [];
+    let commentBox = document.getElementsByClassName("comment-widgets"); //OBTENGO LA CAJA DE COMENTARIOS
+    let commentsarray = []; // ARREGLO LOCAL DE COMENTARIOS
 
-    function getComment(id) {
+    function getComment(id) {  // OBTIENE LOS COMENTARIOS DE UN PRODUCTO
 
         fetch('api/producto/' + id, {})
             .then(response => {
-                if (!response.ok) {
-                    showError("No se pudieron obtener los comentarios");
-                } else {
+                if (!response.ok) { // SI NO ME DEVUELVE 200
+                    showError("No se pudieron obtener los comentarios"); //MUESTRO EL ERROR EN LA WEB
+                } else { //CASO CONTRARIO RETORNO EL COMENTARIO EN FORMA DE JSON
                     return response.json();
                 }
             })
             .then(json => {
-                addToLocal(json);
+                addToLocal(json); // AGREGA EL COMENTARIO AL ARREGLO LOCAL
             }).then(function () {
-            render(commentsarray);
+            render(commentsarray); // RENDERIZA EL ARREGLO DE COMENTARIOS(SIN RECARGAR LA PAGINA)
         })
-            .catch(error => console.log(error));
+            .catch(error => showError(error));
 
     }
 
-    function postComment(comment) {
+    // comment es una variable en formato json que se genera al apretar el boton del html
+    function postComment(comment) {  // AGREGA UN COMENTARIO AL PRODUCTO COMENTADO
         fetch('api/producto', {
             method: "POST",
             headers: {
@@ -30,47 +31,47 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify(comment)
         })
             .then(response => {
-                if (!response.ok) {
-                    showError("ERROR AL AGREGAR");
-                } else {
+                if (!response.ok) { // SI NO RECIBI 200
+                    showError("ERROR AL AGREGAR"); // MUESTRO EL ERROR
+                } else { //CASO CONTRARIO RETORNO EL ID DEL COMENTARIO RECIEN AGREGADO(LAST INSERT ID)
                     return response.json();
                 }
             }).then(json => {
             let data = [{
-                "descripcion": comment.descripcion,
-                "puntaje": comment.puntaje,
-                "id": json,
-                "nombre_usuario": document.getElementById('js-hidden-username').value
+                "descripcion": comment.descripcion, //TEXTO DEL FORM
+                "puntaje": comment.puntaje, // OPCION DEL SELECT
+                "id": json, //ID OBTENIDO EN LA RESPUESTA
+                "nombre_usuario": document.getElementById('js-hidden-username').value // NOMBRE DEL USUARIO
             }]
-            addToLocal(data);
+            addToLocal(data); // AGREGO AL ARREGLO LOCAL EL COMENTARIO
 
         }).then(function () {
-            render(commentsarray);
+            render(commentsarray);  // RENDERIZA EL ARREGLO LOCAL
         })
-            .catch(error => console.log(error));
+            .catch(error => showError(error));
 
     }
 
-    function deleteComment(id) {
+    function deleteComment(id) {  // BORRA UN COMENTARIO DE ALGUN PRODUCTO COMENTADO
         fetch('api/producto/comentario/' + id, {
             method: "DELETE",
         }).then(function (response) {
             if (!response.ok) {
-                showError("ERROR AL BORRAR");
+                showError("ERROR AL BORRAR"); //SI NO LO PUDE BORRAR MUESTRO EL ERROR
             }
         }).then(function () {
-            removeFromLocal(id);
+            removeFromLocal(id); // LO REMUEVO DEL ARREGLO LOCAL
         }).then(function () {
-            render(commentsarray);
+            render(commentsarray); // RENDERIZO EL ARREGLO LOCAL
         })
-            .catch(error => console.log(error));
+            .catch(error => showError(error));
 
     }
 
     function loadProduct() {
-        getComment(commentBox[0].id);
+        getComment(commentBox[0].id); // OBTIENE Y RENDERIZA LOS COMENTARIOS
         let form = document.getElementById("js-add-comment");
-        if(form){
+        if(form){ // SI EL FORM ES != DE NULL LE ASIGNA EL EVENTO DE AGREGAR
             form.addEventListener("click", function (event) {
                 event.preventDefault();
                 let comment = {
@@ -90,22 +91,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
+
+    // ESTA FUNCION DESOCULTA UN DIV EN EL CUAL SE VA A MOSTRAR EL ERROR
     function showError(text){
         document.getElementById("js-message").classList.remove("oculto");
         document.getElementById("js-message").classList.add("alert");
         document.getElementById("js-message").classList.add("alert-danger");
         document.getElementById("js-message-text").classList.remove("oculto");
         document.getElementById("js-message-text").innerHTML=text;
-        setTimeout(hide,2000);
+        setTimeout(hide,2000); // EJECUTO UN SET TIME OUT PARA VOLVER A OCULTAR EL DIV
     }
 
-    function hide(){
+    function hide(){  // ESTA FUNCION SE ENCARGA DE OCULTAR NUEVAMENTE EL DIV
         document.getElementById("js-message").classList.add("oculto");
         document.getElementById("js-message").classList.remove("alert");
         document.getElementById("js-message").classList.remove("alert-danger");
         document.getElementById("js-message-text").classList.add("oculto");
     }
 
+    // ESTA FUNCION DEPENDIENDO EL PUNTAJE QUE TENGA EL COMENTARIO, LO TRANSFORMA EN ESTRELLAS
     function calculateStars(puntaje) {
         let stars = "";
         for (i = 1; i <= puntaje; i++) {
@@ -114,8 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
         return stars;
     }
 
+    //AGREGA LOS COMENTARIOS AL ARREGLO LOCAL
     function addToLocal(json) {
-        for (let item of json) {
+        for (let item of json) {  // POR CADA ITEM QUE TRAIGA EL json crea un Json y lo pushea al arreglo.
             let data = {
                 "descripcion": item.descripcion,
                 "puntaje": item.puntaje,
@@ -127,22 +132,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function removeFromLocal(id) {
+    function removeFromLocal(id) { // REMUEVE UN COMENTARIO DEL ARREGLO LOCAL SEGUN EL ID
         let i = 0;
         while (i < commentsarray.length) {
             if (commentsarray[i].id == id) {
-                commentsarray.splice(i, 1);
+                commentsarray.splice(i, 1); // BORRA EL COMENTARIO CON EL ID i
             } else {
                 i++;
             }
         }
     }
 
-    loadProduct();
+    loadProduct(); // EJECUTO UNA VEZ ESTA FUNCION PARA QUE CUANDO CARGUE EL TPL POR PRIMERA VEZ
+                    //  SE EJECUTE Y ME AGREGUE LOS COMENTARIOS A LA WEB Y EL EVENTO AL BOTON AGREGAR
 
-    function render(comments) {
+    function render(comments) { // SE ENCARGA DE RENDERIZAR LOS COMENTARIOS DEL ARREGLO LOCAL
+                                //UTILIZA CLASES DE BOOTSTRAP PARA LOS ESTILOS.
 
-        commentBox[0].innerHTML = "";
+        commentBox[0].innerHTML = "";// VACIA LA CAJA DE COMENTARIOS PARA EVITAR REPETICIONES
 
 
         for (let comment of comments) {
