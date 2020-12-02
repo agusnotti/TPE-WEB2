@@ -69,22 +69,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function loadProduct() {
         getComment(commentBox[0].id);
+        let form = document.getElementById("js-add-comment");
+        if(form){
+            form.addEventListener("click", function (event) {
+                event.preventDefault();
+                let comment = {
+                    "descripcion": document.getElementById("js-comment-textarea").value,
+                    "puntaje": document.getElementById("js-select").value,
+                    "id_producto": commentBox[0].id,
+                    "id_usuario": document.getElementById("js-hidden-userid").value
+                }
 
-        document.getElementById("js-add-comment").addEventListener("click", function (event) {
-            event.preventDefault();
-            let comment = {
-                "descripcion": document.getElementById("js-comment-textarea").value,
-                "puntaje": document.getElementById("js-select").value,
-                "id_producto": commentBox[0].id,
-                "id_usuario": document.getElementById("js-hidden-userid").value
-            }
-
-            if(!comment.descripcion){
-                showError("El campo descripcion está vacio");
-            }else{
-                postComment(comment);
-            }
-        })
+                if(!comment.descripcion){
+                    showError("El campo descripcion está vacio");
+                }else{
+                    postComment(comment);
+                }
+            })
+        }
 
     }
 
