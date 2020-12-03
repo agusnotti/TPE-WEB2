@@ -74,6 +74,7 @@ class LoginController extends Controller{
                 $this->loginModel->addUser($name, $user, $pass);
 
                 session_start();
+                $userFromDB = $this->loginModel->getUser($user);
                 $_SESSION['EMAIL'] = $user;
                 $_SESSION['ID']= $userFromDB->id;
                 $_SESSION['NAME']= $userFromDB->nombre;
